@@ -24,8 +24,10 @@ const MyNavbar = () => {
               <Nav.Link href="#artists">Artists</Nav.Link>
               <Nav.Link href="#paintings">Paintings</Nav.Link>
               <Nav.Link href="#photography">Photography</Nav.Link>
+              <Nav.Link href="profile"><i class="far fa-user"></i></Nav.Link>
               <Nav.Link href="#favourites"><i class="far fa-heart"></i></Nav.Link>
               <Nav.Link href="#search"><i class="fas fa-search"></i></Nav.Link>
+              <Nav.Link href="#shop"><i class="fas fa-shopping-cart"></i></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
