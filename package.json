@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "art-gallery",
   "version": "0.1.0",
   "private": true,
@@ -41,4 +42,33 @@
   "devDependencies": {
     "node-sass": "^6.0.1"
   }
+=======
+  "name": "art-gallery-online",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "apollo-server-express": "^3.0.2",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.1",
+    "mongoose": "^5.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stevtm/art-gallery-online.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stevtm/art-gallery-online/issues"
+  },
+  "homepage": "https://github.com/Stevtm/art-gallery-online#readme"
+>>>>>>> 9edc5e651beb4a5e47ffb709c5cd1a5a6e03218e
 }
