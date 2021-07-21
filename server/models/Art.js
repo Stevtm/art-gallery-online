@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const ArtSchema = new Schema({
+const artSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -10,7 +10,7 @@ const ArtSchema = new Schema({
   },
   img: {
     data: Buffer,
-    contentType: String
+    contentType: String,
   },
   category: {
     type: String,
@@ -23,14 +23,20 @@ const ArtSchema = new Schema({
   tag: {
     type: String,
   },
+  likes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Like',
+    },
+  ],
   comments: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Comment'
-    }
+      ref: 'Comment',
+    },
   ],
 });
 
-const Art = model('Art', ArtSchema);
+const Art = model('Art', artSchema);
 
 module.exports = Art;
