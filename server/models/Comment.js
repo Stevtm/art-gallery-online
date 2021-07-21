@@ -13,7 +13,6 @@ const CommentSchema = new Schema({
 		default: Date.now,
 		get: (timestamp) => dateFormat(timestamp),
 	},
-	// ref to user model?
 	username: {
 		type: String,
 		required: true,

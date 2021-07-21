@@ -26,7 +26,7 @@ const resolvers = {
     art: async ({ title, category, price, tag }) => {
       return Art.findOne({ title, category, price, tag })
         .select('-__v')
-        .populate('comments');
+        .populate('comments, likes');
     },
     comments: async ({ username }) => {
       const params = username ? { username } : {};

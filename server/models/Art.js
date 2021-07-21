@@ -2,7 +2,6 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const ArtSchema = new Schema({
-	// do we want a custom error message for the back-end? I'm assuming we'll manage errors in form submission on the front end
 	title: {
 		type: String,
 		required: true,
@@ -32,15 +31,24 @@ const ArtSchema = new Schema({
 			type: String,
 		},
 	],
+	likes: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "Like",
+		},
+	],
 	comments: [
 		{
 			type: Schema.Types.ObjectId,
 			ref: "Comment",
 		},
 	],
-	// likes? User?
+	user: {
+		type: Schema.Types.ObjectId,
+		ref: "User",
+	},
 });
 
-const Art = model("Art", ArtSchema);
+const Art = model("Art", artSchema);
 
 module.exports = Art;
