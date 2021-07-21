@@ -12,7 +12,12 @@ const server = new ApolloServer({
   resolvers,
 });
 
-server.applyMiddleware({ app });
+const startup = async () => {
+  await server.start();
+  server.applyMiddleware({ app });
+
+  return app;
+};
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -21,12 +26,10 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
 }
 
-app.get('*', (res) => {
-  res.sendFile(path.join(__dirname, '..client/build/index.html'));
-});
-
 db.once('open', () => {
   app.listen(PORT, () => {
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
 });
+
+startup();

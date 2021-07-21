@@ -1,6 +1,6 @@
-const mongooose = require('mongoose');
+const mongoose = require('mongoose');
 
-mongooose.Mongoose.connect(
+mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost/art-gallery-online',
   {
     useNewUrlParser: true,

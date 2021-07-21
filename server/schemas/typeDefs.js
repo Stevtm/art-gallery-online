@@ -10,9 +10,9 @@ const typeDefs = gql`
 
     type Art {
         _id: ID
-        title String
+        title: String
         img: String
-        category String
+        category: String
         price: Int
         tag: String
         comments: [Comment]
@@ -20,9 +20,14 @@ const typeDefs = gql`
 
     type Comment {
         _id: ID
-        commentText: String,
-        createdAt: String,
+        commentText: String
+        createdAt: String
         username: String
+    }
+
+    type Auth {
+        token: ID!
+        user: User
     }
 
     type Query {
@@ -31,8 +36,11 @@ const typeDefs = gql`
         user(username: String!): User
         art(title: String, category: String, price: Int, tag: String): Art
         comments(username: String!): Comment
-        addUser(username: String!, email: String!, password: String!): Auth
+    }
+
+    type Mutation {
         login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
         addArt(title: String!, category: String!, price: Int!): User
         addComment(username: String!, commentText: String!): Art
     }

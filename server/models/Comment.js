@@ -3,14 +3,14 @@ const dateFormat = require('../utils/dateFormat');
 
 const CommentSchema = new Schema (
     {
-        commentText = {
+        commentText: {
             type: String,
             required: 'You need to enter a comment!',
             minlength: 1,
             maxlength: 240
         },
         createdAt: {
-            type: Data,
+            type: Date,
             default: Date.now,
             get: timestamp => dateFormat(timestamp)
         },

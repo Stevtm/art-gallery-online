@@ -10,21 +10,25 @@ const ArtSchema = new Schema({
   },
   img: {
     data: Buffer,
-    contentType: String,
-    required: true,
+    contentType: String
   },
   category: {
     type: String,
     required: ['photograph', 'drawing', 'painting'],
   },
   price: {
-    type: Int,
+    type: Number,
     required: true,
   },
   tag: {
     type: String,
   },
-  comments: [commentSchema],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ],
 });
 
 const Art = model('Art', ArtSchema);
