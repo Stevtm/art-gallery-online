@@ -26,7 +26,6 @@ const typeDefs = gql`
   }
 
   type Like {
-    _id: ID
     username: String
     like: Int
   }
@@ -53,8 +52,9 @@ const typeDefs = gql`
       title: String!
       category: String!
       price: Int!
-    ): User
-    addComment(username: String!, commentText: String!): Art
+      description: String!
+    ): Art
+    addComment(artId: ID!, username: String!, commentText: String!): Art
     addLike(username: String!): Art
   }
 `;

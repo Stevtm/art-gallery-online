@@ -51,6 +51,22 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    addArt: async (parent, args) => {
+      console.log(args);
+      const art = await Art.create(args);
+
+      return art;
+    },
+    addComment: async (parent, { artId , commentText, username }) => {
+      console.log({ artId, commentText, username })
+      const updatedArt = await Art.findOneAndUpdate(
+        { _id: artId },
+        { $push: { comments: { commentText, username: username } } },
+        { new: true }
+      );
+
+      return updatedArt;
+    }
   },
 };
 
