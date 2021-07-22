@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const bcrypt = require("bcrypt");
 
 const artSchema = new Schema({
 	title: {
@@ -14,10 +13,12 @@ const artSchema = new Schema({
 		minlength: 1,
 		maxlength: 100,
 	},
-	img: {
-		data: Buffer,
-		contentType: String,
-	},
+	img: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Image"
+    }
+  ],
 	category: {
 		type: String,
 		required: ["photograph", "drawing", "painting"],

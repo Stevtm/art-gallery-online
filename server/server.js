@@ -4,6 +4,7 @@ const path = require('path');
 const { authMiddelware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
+const multer = require('multer');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -18,6 +19,8 @@ const startup = async () => {
 
   return app;
 };
+
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
