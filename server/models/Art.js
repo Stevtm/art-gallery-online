@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const ArtSchema = new Schema({
+const artSchema = new Schema({
 	title: {
 		type: String,
 		required: true,

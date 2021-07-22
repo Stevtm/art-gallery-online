@@ -4,10 +4,10 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    me: async (context) => {
+    me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v, -password')
+          .select('-__v')
           .populate('art');
 
         return userData;
@@ -16,41 +16,35 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     users: async () => {
-      return User.find().select('-__v, -password').populate('art');
+      return User.find().select('-__v').populate('art');
     },
-    user: async ({ username }) => {
+    user: async (parent, { username }) => {
       return User.findOne({ username })
-        .select('-__v -password')
+        .select('-__v')
         .populate('art');
     },
-    art: async ({ title, category, price, tag }) => {
+    art: async (parent, { title, category, price, tag }) => {
       return Art.findOne({ title, category, price, tag })
         .select('-__v')
         .populate('comments, likes');
     },
-    comments: async ({ username }) => {
+    comments: async (parent, { username }) => {
       const params = username ? { username } : {};
       return Comment.find(params).sort({ createdAt: -1 });
     },
   },
 
   Mutation: {
-    addUser: async (args) => {
+    addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
     },
-    login: async ({ email, password }) => {
+    login: async (parent, { email }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Incorrect credentials.');
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials.');
       }
 
