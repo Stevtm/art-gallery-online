@@ -49,6 +49,8 @@ const ArtSchema = new Schema({
 	},
 });
 
+// we need a virtual here to calculate number of likes
+
 const Art = model("Art", artSchema);
 
 module.exports = Art;
