@@ -33,7 +33,7 @@ const customTheme = createTheme(themes.default, {
 const ArtGallery = () => {
   return (
     <div id="gallery">
-      <h1 className="pt-3 text-center font-details-b pb-3">ART GALLERY</h1>
+      <h1 className="pt-3 text-center font-details-b pb-3">GALLERY</h1>
       <Timeline theme={customTheme}>
         <Events>
           <ImageEvent
