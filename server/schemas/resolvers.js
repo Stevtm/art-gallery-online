@@ -61,7 +61,7 @@ const resolvers = {
       console.log({ artId, commentText, username })
       const updatedArt = await Art.findOneAndUpdate(
         { _id: artId },
-        { $push: { comments: { commentText, username: username } } },
+        { $push: { comments: { commentText: commentText, username: username } } },
         { new: true }
       );
 
