@@ -1,8 +1,9 @@
 import React from "react";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Image1 from "../../assets/img/gallery/Image1.jpg"
+import { Timeline, Events, UrlButton, ImageEvent } from "@merc/react-timeline";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
+import Image1 from "../../assets/img/gallery/Image1.jpg";
 
 
 import "./gallery.style.css";
@@ -10,47 +11,63 @@ import "./gallery.style.css";
 const ArtGallery = () => {
   return (
     <div id="gallery">
-      <div className="gallery">
-        <h1 className="pt-3 text-center font-details pb-3">
-          Buy Original Art Online!!
-        </h1>
-        <Container>
-          {/* Stack the columns on mobile by making one full-width and the other half-width */}
-          <Row className="pt-3 pb-5 align-items-center">
-            <Col xs={12} md={8}>
-            <img
-                  className="profile justify-content-end"
-                  alt="image1"
-                  src={Image1}
-                  rounded
-                  fluid
-                />
-            </Col>
-            <Col xs={6} md={4}>
-              xs=6 md=4
-            </Col>
-          </Row>
+      <h1 className="pt-3 text-center font-details-b pb-3">ART GALLERY</h1>
+      <Timeline>
+        <Events>
+          <ImageEvent
+            date="00/00/0000"
+            className="text-center"
+            text="Image 1"
+            src={Image1}
+            alt="Image 1"
+          >
+            <div className="d-flex justify-content-between flex-column mt-1">
+              <div>
+                <Accordion>
+                  <Card>
+                    <Accordion.Toggle
+                      as={Card.Header}
+                      eventKey="0"
+                      className="p-2 text-center accordian-main"
+                    >
+                      DETAILS
+                    </Accordion.Toggle>
 
-          {/* Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
-          <Row>
-            <Col xs={6} md={4}>
-              xs=6 md=4
-            </Col>
-            <Col xs={6} md={4}>
-              xs=6 md=4
-            </Col>
-            <Col xs={6} md={4}>
-              xs=6 md=4
-            </Col>
-          </Row>
+                    <Accordion.Collapse eventKey="0" className="text-left">
+                      <Card.Body>
+                        <strong>Description:</strong> (Input Artist Description)
+                        
+                        <hr />
+                        <strong>Artist:</strong>
+                        <ul className="list-styles pt-1">
+                          <li>(Input Artist's Name)</li>
+                        </ul>
+                        <hr />
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                </Accordion>
+              </div>
+              <div className="d-flex justify-content-between flex-nowrap text-center">
+                <UrlButton
+                  href=""
+                  target="_blank"
+                >
+                  SEE ARTIST
+                </UrlButton>
+                <UrlButton
+                  href=""
+                  target="_blank"
+                >
+                  SEE ART PIECE
+                </UrlButton>
+              </div>
+            </div>
+          </ImageEvent>
 
-          {/* Columns are always 50% wide, on mobile and desktop */}
-          <Row>
-            <Col xs={6}>xs=6</Col>
-            <Col xs={6}>xs=6</Col>
-          </Row>
-        </Container>
-      </div>
+          
+        </Events>
+      </Timeline>
     </div>
   );
 };
