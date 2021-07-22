@@ -2,6 +2,7 @@ import React from "react";
 import Form from 'react-bootstrap/Form'
 
 const ArtLogin = () => {
+  // const {setShowModal, showModal}= props
   return (
     <>
       <Form>
