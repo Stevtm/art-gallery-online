@@ -33,15 +33,14 @@ app.post('/', upload.single('image'), (req, res, next) => {
       ),
       contentType: 'image/png',
     },
-  }
+  };
 
   imgModel.create(obj, (err, item) => {
-      if (err) {
-          console.log(err);
-      }
-      else {
-          item.save();
-          res.redirect('/');
-      }
-  })
+    if (err) {
+      console.log(err);
+    } else {
+      item.save();
+      res.redirect('/');
+    }
+  });
 });
