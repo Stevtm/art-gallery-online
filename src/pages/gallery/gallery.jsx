@@ -5,6 +5,8 @@ import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 import Image1 from "../../assets/img/gallery/Image1.jpg";
 import Image2 from "../../assets/img/gallery/Image2.jpg";
+import Image3 from "../../assets/img/gallery/Image3.jpg";
+import Image4 from "../../assets/img/gallery/Image4.jpg";
 
 
 import "./gallery.style.css";
@@ -91,6 +93,107 @@ const ArtGallery = () => {
             text="Image 2"
             src={Image2}
             alt="Image 2"
+          >
+            <div className="d-flex justify-content-between flex-column mt-1">
+              <div>
+                <Accordion>
+                  <Card>
+                    <Accordion.Toggle
+                      as={Card.Header}
+                      eventKey="0"
+                      className="p-2 text-center accordian-main"
+                    >
+                      ART DETAILS
+                    </Accordion.Toggle>
+
+                    <Accordion.Collapse eventKey="0" className="text-left">
+                      <Card.Body>
+                        <strong>Description:</strong> (Insert Art Description)
+                        <hr />
+                        <strong>Artist:</strong>
+                        <ul className="list-styles pt-1">
+                          <li>(Insert Artist Name)</li>
+                        </ul>
+                        <hr />
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                </Accordion>
+              </div>
+              <div className="d-flex justify-content-between flex-nowrap text-center">
+                <UrlButton
+                  href=""
+                  target="_blank"
+                >
+                  SEE ARTIST
+                </UrlButton>
+                <UrlButton
+                  href=""
+                  target="_blank"
+                >
+                SEE ART PIECE
+                </UrlButton>
+              </div>
+            </div>
+          </ImageEvent>
+
+          <ImageEvent
+            date="00/00/0000"
+            className="text-center"
+            text="Image 3"
+            src={Image3}
+            alt="Image 3"
+          >
+            <div className="d-flex justify-content-between flex-column mt-1">
+              <div>
+                <Accordion>
+                  <Card>
+                    <Accordion.Toggle
+                      as={Card.Header}
+                      eventKey="0"
+                      className="p-2 text-center accordian-main"
+                    >
+                      ART DETAILS
+                    </Accordion.Toggle>
+
+                    <Accordion.Collapse eventKey="0" className="text-left">
+                      <Card.Body>
+                        <strong>Description:</strong> (Insert Artist Description)
+                        
+                        <hr />
+                        <strong>Artist:</strong>
+                        <ul className="list-styles pt-1">
+                          <li>(Insert Artist's Name)</li>
+                        </ul>
+                        <hr />
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                </Accordion>
+              </div>
+              <div className="d-flex justify-content-between flex-nowrap text-center">
+                <UrlButton
+                  href=""
+                  target="_blank"
+                >
+                  SEE ARTIST
+                </UrlButton>
+                <UrlButton
+                  href=""
+                  target="_blank"
+                >
+                  SEE ART PIECE
+                </UrlButton>
+              </div>
+            </div>
+          </ImageEvent>
+
+          <ImageEvent
+            date="06/03/2021"
+            className="text-center"
+            text="Image 4"
+            src={Image4}
+            alt="Image 4"
           >
             <div className="d-flex justify-content-between flex-column mt-1">
               <div>
