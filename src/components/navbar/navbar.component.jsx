@@ -5,23 +5,29 @@ import Logo from "../../assets/icon/logo.jpg"
 import "../navbar/navbar.style.css";
 // import LoginForm from "../LoginForm";
 import LoginForm from '../LoginForm';
+import { Link } from 'react-router-dom';
 
-const MyNavbar = () => {
+const MyNavbar = (props) => {
 
-  const [showModal, setShowModal]= useState(false);
+  
+  const {setShowModal, showModal}= props;
+  // setShowModal(prev => !prev)
 
-  const bbb = () => {
-    console.log("Login Man clicked");
-    setShowModal(prev => !prev)
-    return (
-      <>
-    {/* <LoginForm showModal= {showModal} setShowModal= {setShowModal}></LoginForm> */}
-    </>
-    )
+  const Bbb = () => {
+    // const [showModal, setShowModal]= useState(false);
     
-  }
+    
+    console.log("Login Man clicked");
+    
+  //   return(
+  //     <LoginForm showModal= {showModal} setShowModal= {setShowModal}></LoginForm>
+  //   )
+  };
+
+
     return (
       <>
+      <div>
         <Navbar
           fixed="top"
           collapseOnSelect
@@ -39,14 +45,18 @@ const MyNavbar = () => {
               <Nav.Link href="#artists">Artists</Nav.Link>
               <Nav.Link href="#paintings">Paintings</Nav.Link>
               <Nav.Link href="#photography">Photography</Nav.Link>
-              <Nav.Link onClick={() => bbb(true)}><i class="far fa-user"></i></Nav.Link>
-              <LoginForm showModal= {showModal} setShowModal= {setShowModal}></LoginForm>
+              <Nav.Link href="#login" onClick={() => Bbb(true)}><i class="far fa-user" ></i></Nav.Link>
+              <Link to="/login" >link</Link>
+              
               <Nav.Link href="#favourites"><i class="far fa-heart"></i></Nav.Link>
               <Nav.Link href="#search"><i class="fas fa-search"></i></Nav.Link>
               <Nav.Link href="#shop"><i class="fas fa-shopping-cart"></i></Nav.Link>
             </Nav>
+            <LoginForm showModal= {showModal} setShowModal= {setShowModal}></LoginForm>
           </Navbar.Collapse>
         </Navbar>
+        
+        </div>
       </>
     );
   };
