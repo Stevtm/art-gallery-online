@@ -42,7 +42,7 @@ const MyNavbar = (props) => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
               <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#artists">Artists</Nav.Link>
+              <Nav.Link href="#gallery">Gallery</Nav.Link>
               <Nav.Link href="#paintings">Paintings</Nav.Link>
               <Nav.Link href="#photography">Photography</Nav.Link>
               <Nav.Link href="#login" onClick={() => Bbb(true)}><i class="far fa-user" ></i></Nav.Link>
