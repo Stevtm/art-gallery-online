@@ -15,9 +15,9 @@ const typeDefs = gql`
     category: String
     description: String
     price: Int
-    tag: String
+    tag: [String]
     comments: [Comment]
-    likes: [Like]
+    likeCount: Int
   }
 
   type Comment {
@@ -40,7 +40,7 @@ const typeDefs = gql`
     me: User
     users: [User]
     user(username: String!): User
-    art(title: String, category: String, price: Int, tag: String): Art
+    art: [Art]
     comments(username: String!): Comment
     likes: [Art]
   }

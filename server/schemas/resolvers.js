@@ -23,10 +23,11 @@ const resolvers = {
         .select('-__v')
         .populate('art');
     },
-    art: async (parent, { title, category, price, tag }) => {
-      return Art.findOne({ title, category, price, tag })
+    art: async () => {
+      return Art.find()
         .select('-__v')
-        .populate('comments, likes');
+        .populate('comments')
+        .populate('likes');
     },
     comments: async (parent, { username }) => {
       const params = username ? { username } : {};
