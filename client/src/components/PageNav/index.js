@@ -24,14 +24,14 @@ const PageNav = (props) => {
 						<Nav className="ml-auto">
 							{/* <Nav.Link href="#home">Home</Nav.Link> */}
 							<Link to="/">Home</Link>
+							<Link to="/login">Login</Link>
+							<Link to="/signup">Sign Up</Link>
 							{/* <BootstrapNav.Link href="#gallery">Gallery</BootstrapNav.Link>
 							<BootstrapNav.Link href="#paintings">Paintings</BootstrapNav.Link>
 							<BootstrapNav.Link href="#photography"> */}
 							Photography
 							{/* </BootstrapNav.Link> */}
-							<Link to="/login">
 								<i class="far fa-user"></i>
-							</Link>
 							{/* <BootstrapNav.Link href="#search">
 								<i class="fas fa-search"></i>
 							</BootstrapNav.Link>
