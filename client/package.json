@@ -1,8 +1,18 @@
 {
+<<<<<<< HEAD
   "name": "art-gallery",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+=======
+  "name": "art-gallery-online",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+<<<<<<<< HEAD:client/package.json
+    "@merc/react-timeline": "^0.1.42",
+>>>>>>> feature/gallery
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -10,6 +20,7 @@
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
+<<<<<<< HEAD
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.0",
     "web-vitals": "^1.1.2"
@@ -41,4 +52,35 @@
   "devDependencies": {
     "node-sass": "^6.0.1"
   }
+=======
+    "react-reveal": "^1.2.2",
+    "react-scripts": "4.0.3",
+    "styled-components": "^5.3.0",
+    "web-vitals": "^1.1.2"
+========
+    "apollo-server-express": "^3.0.2",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.1",
+    "mongoose": "^5.13.3",
+    "nodemon": "^2.0.12"
+>>>>>>>> feature/gallery:package.json
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stevtm/art-gallery-online.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stevtm/art-gallery-online/issues"
+  },
+  "homepage": "https://github.com/Stevtm/art-gallery-online#readme"
+>>>>>>> feature/gallery
 }
