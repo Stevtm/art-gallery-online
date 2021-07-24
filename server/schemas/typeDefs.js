@@ -13,9 +13,11 @@ const typeDefs = gql`
     title: String
     img: String
     category: String
+    description: String
     price: Int
     tag: String
     comments: [Comment]
+    likes: [Like]
   }
 
   type Comment {
@@ -26,8 +28,7 @@ const typeDefs = gql`
   }
 
   type Like {
-    username: String
-    like: Int
+    username: String!
   }
 
   type Auth {
@@ -55,7 +56,7 @@ const typeDefs = gql`
       description: String!
     ): Art
     addComment(artId: ID!, username: String!, commentText: String!): Art
-    addLike(username: String!): Art
+    addLike(artId: ID!, username: String!): Art
   }
 `;
 

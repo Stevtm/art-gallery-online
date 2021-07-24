@@ -52,16 +52,23 @@ const resolvers = {
       return { token, user };
     },
     addArt: async (parent, args) => {
-      console.log(args);
       const art = await Art.create(args);
 
       return art;
     },
     addComment: async (parent, { artId , commentText, username }) => {
-      console.log({ artId, commentText, username })
       const updatedArt = await Art.findOneAndUpdate(
         { _id: artId },
         { $push: { comments: { commentText: commentText, username: username } } },
+        { new: true }
+      );
+
+      return updatedArt;
+    },
+    addLike: async(parent, { artId, username }) => {
+      const updatedArt = await Art.findOneAndUpdate(
+        {_id: artId },
+        { $push: { likes: { username } } },
         { new: true }
       );
 

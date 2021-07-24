@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const commentSchema = require('./Comment');
+const likeSchema = require('./Like');
 
 const artSchema = new Schema(
   {
@@ -34,12 +35,7 @@ const artSchema = new Schema(
         type: String,
       },
     ],
-    likes: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Like',
-      },
-    ],
+    likes: [likeSchema],
     comments: [commentSchema],
     user: {
       type: Schema.Types.ObjectId,
