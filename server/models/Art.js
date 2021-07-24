@@ -1,56 +1,58 @@
-const { Schema, model } = require("mongoose");
-const bcrypt = require("bcrypt");
+const { Schema, model } = require('mongoose');
+const commentSchema = require('./Comment');
 
-const artSchema = new Schema({
-	title: {
-		type: String,
-		required: true,
-		minlength: 1,
-		maxlength: 100,
-	},
-	description: {
-		type: String,
-		required: true,
-		minlength: 1,
-		maxlength: 100,
-	},
-	img: {
-		data: Buffer,
-		contentType: String,
-	},
-	category: {
-		type: String,
-		required: ["photograph", "drawing", "painting"],
-	},
-	price: {
-		type: Number,
-		required: true,
-	},
-	tag: [
-		{
-			type: String,
-		},
-	],
-	likes: [
-		{
-			type: Schema.Types.ObjectId,
-			ref: "Like",
-		},
-	],
-	comments: [
-		{
-			type: Schema.Types.ObjectId,
-			ref: "Comment",
-		},
-	],
-	user: {
-		type: Schema.Types.ObjectId,
-		ref: "User",
-	},
-});
+const artSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      minlength: 1,
+      maxlength: 100,
+    },
+    description: {
+      type: String,
+      required: true,
+      minlength: 1,
+      maxlength: 100,
+    },
+    img: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Image',
+      },
+    ],
+    category: {
+      type: String,
+      required: ['photograph', 'drawing', 'painting'],
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    tag: [
+      {
+        type: String,
+      },
+    ],
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Like',
+      },
+    ],
+    comments: [commentSchema],
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+  }
+);
 
-// we need a virtual here to calculate number of likes
-
-const Art = model("Art", artSchema);
+const Art = model('Art', artSchema);
 
 module.exports = Art;
