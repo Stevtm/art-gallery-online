@@ -2,9 +2,9 @@ import React, { useState, Component } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Logo from "../../assets/icon/logo.jpg"
-import "../navbar/navbar.style.css";
+import "./navbar.style.css";
 // import LoginForm from "../LoginForm";
-import LoginForm from '../LoginForm';
+// import LoginForm from '../LoginForm';
 import { Link } from 'react-router-dom';
 
 const MyNavbar = (props) => {
@@ -41,18 +41,16 @@ const MyNavbar = (props) => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
+              {/* <Nav.Link href="#home">Home</Nav.Link> */}
+              <Link to="/home">Home</Link>
               <Nav.Link href="#gallery">Gallery</Nav.Link>
               <Nav.Link href="#paintings">Paintings</Nav.Link>
               <Nav.Link href="#photography">Photography</Nav.Link>
-              <Nav.Link href="#login" onClick={() => Bbb(true)}><i class="far fa-user" ></i></Nav.Link>
-              <Link to="/login" >link</Link>
-              
-              <Nav.Link href="#favourites"><i class="far fa-heart"></i></Nav.Link>
+              <Link to="/login"><i class="far fa-user" ></i></Link>
               <Nav.Link href="#search"><i class="fas fa-search"></i></Nav.Link>
               <Nav.Link href="#shop"><i class="fas fa-shopping-cart"></i></Nav.Link>
             </Nav>
-            <LoginForm showModal= {showModal} setShowModal= {setShowModal}></LoginForm>
+            {/* <LoginForm showModal= {showModal} setShowModal= {setShowModal}></LoginForm> */}
           </Navbar.Collapse>
         </Navbar>
         
