@@ -20,6 +20,7 @@ import Gallery from "./pages/Gallery";
 import Title from "./components/Title";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
 
 // import styling
 import Container from "react-bootstrap/Container";
@@ -54,16 +55,16 @@ const App = () => {
 			<Router>
 				<div className="flex-column justify-flex-start min-100-vh">
 					<Nav />
-					<div className="container">
+					<div className="container top-padding">
 						<Route exact path="/login">
 							<Login></Login>
 						</Route>
 						<Route exact path="/signup">
 							<Signup></Signup>
 						</Route>
-						{/* <Route exact path="/gallery">
-              <ArtGallery></ArtGallery>
-            </Route> */}
+						<Route exact path="/profile">
+							<Profile></Profile>
+						</Route>
 						<Route exact path="/">
 							<div className="App" style={{ position: "relative" }}>
 								<Carousel />

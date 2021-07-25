@@ -34,11 +34,14 @@ const Login = () => {
 		const password = formState.password;
 
 		// check if the credentials are correct
+		let loginSuccess = false;
+
 		await firebase
 			.auth()
 			.signInWithEmailAndPassword(email, password)
 			.then((userCredential) => {
 				console.log("logged in!");
+				loginSuccess = true;
 			})
 			.catch((error) => {
 				alert("Login credentials are incorrect.");
@@ -47,8 +50,11 @@ const Login = () => {
 					email: "",
 					password: "",
 				});
-				return;
 			});
+
+		if (!loginSuccess) {
+			return;
+		}
 
 		// sign in user from database and assign token
 		try {
@@ -68,7 +74,7 @@ const Login = () => {
 
 	return (
 		<main
-			className="flex-row justify-center mb-4 top-padding"
+			className="flex-row justify-center mb-4"
 			style={{ backgroundColor: "none" }}
 		>
 			<div className="col-12 col-md-6">

@@ -11,15 +11,18 @@ const PageNav = () => {
 		// check if the user is logged in
 		if (Auth.loggedIn()) {
 			return (
-				<a href="/" onClick={() => Auth.logout()}>
-					Logout
-				</a>
+				<>
+					<Link to="/profile">My Profile</Link>
+					<a href="/" onClick={() => Auth.logout()}>
+						Logout
+					</a>
+				</>
 			);
 		} else {
 			return (
 				<>
 					<Link to="/login">Login</Link>
-					<Link to="/login">Signup</Link>
+					<Link to="/signup">Signup</Link>
 				</>
 			);
 		}

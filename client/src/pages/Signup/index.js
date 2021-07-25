@@ -39,17 +39,23 @@ const Signup = () => {
 		const email = formState.email;
 
 		// create user in firebase with credentials
+		let signUpSuccess = false;
+
 		await firebase
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then((userCredential) => {
 				// Signed in
 				console.log("user created!");
+				signUpSuccess = true;
 			})
 			.catch((error) => {
 				alert(`Could not create user. `);
-				return;
 			});
+
+		if (!signUpSuccess) {
+			return;
+		}
 
 		// create user in database
 		try {
@@ -69,7 +75,7 @@ const Signup = () => {
 	};
 
 	return (
-		<main className="flex-row justify-center mb-4 top-padding">
+		<main className="flex-row justify-center mb-4">
 			<div className="col-12 col-md-6">
 				<div className="card">
 					<h4 className="card-header">Sign Up</h4>
