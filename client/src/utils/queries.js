@@ -52,12 +52,9 @@ export const QUERY_ART = gql`
 		art {
 			_id
 			title
-			img
 			category
 			description
 			price
-			tag
-			likeCount
 		}
 	}
 `;

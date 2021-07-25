@@ -45,6 +45,7 @@ const PageNav = () => {
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="ml-auto">
 						<Link to="/">Home</Link>
+						<Link to="/artgallery">Art Gallery</Link>
 						{showNav()}
 					</Nav>
 				</Navbar.Collapse>

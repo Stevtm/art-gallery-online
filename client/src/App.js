@@ -22,6 +22,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Post from "./pages/Post";
+import ArtGallery from "./pages/ArtGallery";
 
 // import styling
 import Container from "react-bootstrap/Container";
@@ -68,6 +69,9 @@ const App = () => {
 						</Route>
 						<Route exact path="/post">
 							<Post></Post>
+						</Route>
+						<Route exact path="/artgallery">
+							<ArtGallery></ArtGallery>
 						</Route>
 						<Route exact path="/">
 							<div className="App" style={{ position: "relative" }}>
