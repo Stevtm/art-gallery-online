@@ -48,8 +48,6 @@ const client = new ApolloClient({
 // initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-console.log(firebaseConfig);
-
 const App = () => {
 	return (
 		<ApolloProvider client={client}>
