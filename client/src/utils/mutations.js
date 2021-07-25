@@ -26,7 +26,7 @@ export const ADD_ART = gql`
 	mutation AddArtMutation(
 		$addArtTitle: String!
 		$addArtCategory: String!
-		$addArtPrice: Int!
+		$addArtPrice: String!
 		$addArtDescription: String!
 	) {
 		addArt(
@@ -37,11 +37,9 @@ export const ADD_ART = gql`
 		) {
 			_id
 			title
-			img
 			category
 			description
 			price
-			tag
 		}
 	}
 `;

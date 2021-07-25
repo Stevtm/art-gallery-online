@@ -26,8 +26,6 @@ const Post = () => {
 
 	// submit form to add art
 	const handleFormSubmit = async (event) => {
-		console.log(formState);
-
 		// stop the page from reloading
 		event.preventDefault();
 
@@ -35,7 +33,6 @@ const Post = () => {
 		let formFilled = true;
 
 		Object.values(formState).forEach((input) => {
-			console.log(input);
 			if (!input.length > 0) {
 				formFilled = false;
 			}

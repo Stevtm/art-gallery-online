@@ -9,12 +9,9 @@ export const QUERY_ME = gql`
 			art {
 				_id
 				title
-				img
 				description
 				category
 				price
-				tag
-				likeCount
 			}
 		}
 	}

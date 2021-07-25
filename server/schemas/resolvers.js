@@ -48,10 +48,19 @@ const resolvers = {
 			return { token, user };
 		},
 		addArt: async (parent, args, context) => {
-			console.log("context", context);
 			if (context.user) {
-				args.username = context.user.username;
-				const art = await Art.create(args);
+				// create document in art collection
+				const art = await Art.create({
+					...args,
+					username: context.user.username,
+				});
+
+				// update user to include the art
+				await User.findByIdAndUpdate(
+					{ _id: context.user._id },
+					{ $push: { art: art._id } },
+					{ new: true }
+				);
 
 				return art;
 			}
