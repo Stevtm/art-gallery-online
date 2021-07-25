@@ -47,10 +47,16 @@ const resolvers = {
 			const token = signToken(user);
 			return { token, user };
 		},
-		addArt: async (parent, args) => {
-			const art = await Art.create(args);
+		addArt: async (parent, args, context) => {
+			console.log("context", context);
+			if (context.user) {
+				args.username = context.user.username;
+				const art = await Art.create(args);
 
-			return art;
+				return art;
+			}
+
+			throw new AuthenticationError("You need to be logged in!");
 		},
 		addComment: async (parent, { artId, commentText, username }) => {
 			const updatedArt = await Art.findOneAndUpdate(

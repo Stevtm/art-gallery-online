@@ -21,6 +21,7 @@ import Title from "./components/Title";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
+import Post from "./pages/Post";
 
 // import styling
 import Container from "react-bootstrap/Container";
@@ -64,6 +65,9 @@ const App = () => {
 						</Route>
 						<Route exact path="/profile">
 							<Profile></Profile>
+						</Route>
+						<Route exact path="/post">
+							<Post></Post>
 						</Route>
 						<Route exact path="/">
 							<div className="App" style={{ position: "relative" }}>

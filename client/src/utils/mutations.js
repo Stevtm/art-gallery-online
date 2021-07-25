@@ -24,14 +24,12 @@ export const LOGIN = gql`
 
 export const ADD_ART = gql`
 	mutation AddArtMutation(
-		$addArtUsername: String!
 		$addArtTitle: String!
 		$addArtCategory: String!
 		$addArtPrice: Int!
 		$addArtDescription: String!
 	) {
 		addArt(
-			username: $addArtUsername
 			title: $addArtTitle
 			category: $addArtCategory
 			price: $addArtPrice

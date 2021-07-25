@@ -12,6 +12,7 @@ const PageNav = () => {
 		if (Auth.loggedIn()) {
 			return (
 				<>
+					<Link to="/post">Post Your Art</Link>
 					<Link to="/profile">My Profile</Link>
 					<a href="/" onClick={() => Auth.logout()}>
 						Logout
@@ -37,7 +38,7 @@ const PageNav = () => {
 				variant="dark"
 				className="animate-navbar nav-theme justify-content-between"
 			>
-				<Navbar.Brand href="#home">
+				<Navbar.Brand href="/">
 					<img className="logo" src={Logo} alt="Art Gallery Logo" />
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />

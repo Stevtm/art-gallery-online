@@ -49,10 +49,9 @@ const typeDefs = gql`
 		login(email: String!): Auth
 		addUser(username: String!, email: String!): Auth
 		addArt(
-			username: String!
 			title: String!
 			category: String!
-			price: Int!
+			price: String!
 			description: String!
 		): Art
 		addComment(artId: ID!, username: String!, commentText: String!): Art
