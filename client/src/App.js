@@ -9,6 +9,9 @@ import {
 	createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import firebase from "firebase/app";
+import "firebase/auth";
+import firebaseConfig from "./firebase.config";
 
 // import React components
 import Nav from "./components/PageNav";
@@ -42,42 +45,47 @@ const client = new ApolloClient({
 	cache: new InMemoryCache(),
 });
 
+// initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+console.log(firebaseConfig);
+
 const App = () => {
 	return (
-		// <ApolloProvider client={client}>
-		<Router>
-			<div className="flex-column justify-flex-start min-100-vh">
-				<Nav />
-				<div className="container">
-					<Route exact path="/login">
-						<Login></Login>
-					</Route>
-					<Route exact path="/signup">
-						<Signup></Signup>
-					</Route>
-					{/* <Route exact path="/gallery">
+		<ApolloProvider client={client}>
+			<Router>
+				<div className="flex-column justify-flex-start min-100-vh">
+					<Nav />
+					<div className="container">
+						<Route exact path="/login">
+							<Login></Login>
+						</Route>
+						<Route exact path="/signup">
+							<Signup></Signup>
+						</Route>
+						{/* <Route exact path="/gallery">
               <ArtGallery></ArtGallery>
             </Route> */}
-					<Route exact path="/">
-						<div className="App" style={{ position: "relative" }}>
-							<Carousel />
-							<Title />
+						<Route exact path="/">
+							<div className="App" style={{ position: "relative" }}>
+								<Carousel />
+								<Title />
 
-							<div>
-								<Container className="container-box rounded">
-									<Fade duration={500}>
-										<hr />
-										<Gallery />
-									</Fade>
-								</Container>
+								<div>
+									<Container className="container-box rounded">
+										<Fade duration={500}>
+											<hr />
+											<Gallery />
+										</Fade>
+									</Container>
+								</div>
 							</div>
-						</div>
-					</Route>
+						</Route>
+					</div>
+					{/* <Footer /> */}
 				</div>
-				{/* <Footer /> */}
-			</div>
-		</Router>
-		// </ApolloProvider>
+			</Router>
+		</ApolloProvider>
 	);
 };
 

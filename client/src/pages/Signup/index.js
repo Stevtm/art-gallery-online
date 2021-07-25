@@ -1,46 +1,69 @@
 import React, { useState } from "react";
-// import { useMutation } from '@apollo/client';
-// import { ADD_USER } from '../utils/mutations';
-// import Auth from '../utils/auth';
+import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
+import firebase from "firebase/app";
+import "firebase/auth";
+import { ADD_USER } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 import "./style.css";
 
 const Signup = () => {
+	// set initial form state
 	const [formState, setFormState] = useState({
 		username: "",
 		email: "",
 		password: "",
 	});
-	//   const [addUser, { error }]= useMutation(ADD_USER);
+
+	// mutation configuration
+	const [addUser, { error }] = useMutation(ADD_USER);
 
 	// update state based on form input changes
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		console.log("handleChange");
 
-		// setFormState({
-		//   ...formState,
-		//   [name]: value,
-		// });
+		setFormState({
+			...formState,
+			[name]: value,
+		});
 	};
 
-	// submit form
+	// submit form to create user
 	const handleFormSubmit = async (event) => {
+		// stop the page from reloading
 		event.preventDefault();
-		console.log("handleSormSubmit");
 
-		// use try/catch instead of promises to handle errors
-		// try {
-		//   // execute addUser mutations and pass in variables data from form
-		//   const { data }= await addUser({
-		//     variables: { ...formState }
-		//   });
-		//   Auth.login(data.addUser.token);
-		//   // console.log(data);
-		// }
-		// catch(e) {
-		//   console.log(e);
-		// }
+		// destructure user credentials from state
+		const username = formState.username;
+		const password = formState.password;
+		const email = formState.email;
+
+		// check if the credentials are correct
+		await firebase
+			.auth()
+			.createUserWithEmailAndPassword(email, password)
+			.then((userCredential) => {
+				// Signed in
+				console.log("user created!");
+			})
+			.catch((error) => {
+				alert(`Could not create user. `);
+				return;
+			});
+
+		try {
+			const { data } = await addUser({
+				variables: {
+					addUserUsername: username,
+					addUserEmail: email,
+				},
+			});
+
+			const token = data.addUser.token;
+			Auth.login(token);
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	return (
