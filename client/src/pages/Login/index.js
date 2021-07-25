@@ -1,47 +1,69 @@
 import React, { useState } from "react";
-// import { useMutation } from '@apollo/client';
-// import { LOGIN_USER } from '../utils/mutations';
 import { Link } from "react-router-dom";
-
+import { useMutation } from "@apollo/client";
+import { LOGIN } from "../../utils/mutations";
+import firebase from "firebase/app";
+import "firebase/auth";
+import Auth from "../../utils/auth";
 import "./style.css";
 
-// import Auth from '../utils/auth';
-
-const Login = (props) => {
+const Login = () => {
+	// set initial form state
 	const [formState, setFormState] = useState({ email: "", password: "" });
-	//   const [login, { error }] = useMutation(LOGIN_USER);
+
+	// mutation configuration
+	const [login, { error }] = useMutation(LOGIN);
 
 	// update state based on form input changes
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		console.log("handleChange");
 
-		//     setFormState({
-		//       ...formState,
-		//       [name]: value
-		//     });
+		setFormState({
+			...formState,
+			[name]: value,
+		});
 	};
 
-	// submit form
+	// submit form to login user
 	const handleFormSubmit = async (event) => {
+		// stop the page from reloading
 		event.preventDefault();
-		console.log("handleFormSubmit");
 
-		// try {
-		//   const { data } = await login({
-		//     variables: { ...formState }
-		//   });
+		// destructure user credentials from state
+		const email = formState.email;
+		const password = formState.password;
 
-		//   Auth.login(data.login.token);
-		// } catch (e) {
-		//   console.error(e);
-		// }
+		// check if the credentials are correct
+		await firebase
+			.auth()
+			.signInWithEmailAndPassword(email, password)
+			.then((userCredential) => {
+				console.log("logged in!");
+			})
+			.catch((error) => {
+				alert("Login credentials are incorrect.");
+				// clear form values
+				setFormState({
+					email: "",
+					password: "",
+				});
+				return;
+			});
 
-		// // clear form values
-		// setFormState({
-		//   email: '',
-		//   password: ''
-		// });
+		// sign in user from database and assign token
+		try {
+			const { data } = await login({
+				variables: {
+					loginEmail: email,
+				},
+			});
+
+			// assign token
+			const token = data.login.token;
+			Auth.login(token);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (

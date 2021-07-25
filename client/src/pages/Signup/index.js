@@ -38,7 +38,7 @@ const Signup = () => {
 		const password = formState.password;
 		const email = formState.email;
 
-		// check if the credentials are correct
+		// create user in firebase with credentials
 		await firebase
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
@@ -51,6 +51,7 @@ const Signup = () => {
 				return;
 			});
 
+		// create user in database
 		try {
 			const { data } = await addUser({
 				variables: {
@@ -59,6 +60,7 @@ const Signup = () => {
 				},
 			});
 
+			// assign token and login user
 			const token = data.addUser.token;
 			Auth.login(token);
 		} catch (err) {
