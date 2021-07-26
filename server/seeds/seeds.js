@@ -57,15 +57,11 @@ db.once('open', async () => {
     const randomArtIndex = Math.floor(Math.random() * createdArts.length);
     const { _id: artId } = createdArts[randomArtIndex];
 
-    console.log(artId);
-    console.log(commentText);
-    console.log(username);
-
-    console.log(await Art.updateOne(
+    await Art.updateOne(
       { _id: artId },
       { $addToSet: { comments: { commentText, username } } },
       { runValidators: true }
-    ));
+    );
   }
 
   //create likes
