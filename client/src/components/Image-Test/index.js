@@ -4,6 +4,10 @@ const axios = require('axios');
 
 const ImageUpload = () => {
   const [multerImage, setMulterImage] = useState('');
+  const [setFormState, imgName] = useState({
+    imgName: '',
+    imgData: ''
+  })
 
   const uploadImage = (e, method) => {
     let imageObj = {};
@@ -12,6 +16,8 @@ const ImageUpload = () => {
 
     imageFormObj.append('imgName', 'multer-image-' + Date.now());
     imageFormObj.append('imgData', e.target.files[0]);
+
+    
 
     setMulterImage({
       multerImage: URL.createObjectURL(e.target.files[0])

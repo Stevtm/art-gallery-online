@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Art, Comment } = require("../models");
+const { User, Art, Comment, Image } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -28,6 +28,10 @@ const resolvers = {
 			const params = username ? { username } : {};
 			return Comment.find(params).sort({ createdAt: -1 });
 		},
+		image: async(parent, imgName) => {
+			console.log(imgName);
+			return Image.findOne({ imgName }).select("-v")
+		}
 	},
 
 	Mutation: {
@@ -48,7 +52,9 @@ const resolvers = {
 			return { token, user };
 		},
 		addArt: async (parent, args, context) => {
+			console.log(args);
 			if (context.user) {
+				
 				// create document in art collection
 				const art = await Art.create({
 					...args,
@@ -61,11 +67,6 @@ const resolvers = {
 					{ $push: { art: art._id } },
 					{ new: true }
 				);
-
-				await Art.findByIdAndUpdate(
-					{ _id: art._id },
-					{ img: img._id }
-				)
 
 				return art;
 			}

@@ -28,12 +28,16 @@ export const ADD_ART = gql`
 		$addArtCategory: String!
 		$addArtPrice: String!
 		$addArtDescription: String!
+		$addArtImgName: String
+		$addArtImgData: String
 	) {
 		addArt(
 			title: $addArtTitle
 			category: $addArtCategory
 			price: $addArtPrice
 			description: $addArtDescription
+			imgName: $addArtImgName
+			imgData: $addArtImgData
 		) {
 			_id
 			title

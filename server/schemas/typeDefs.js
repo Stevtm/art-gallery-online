@@ -11,7 +11,7 @@ const typeDefs = gql`
 	type Art {
 		_id: ID
 		title: String
-		img: String
+		imgName: String
 		category: String
 		description: String
 		price: Int
@@ -31,6 +31,11 @@ const typeDefs = gql`
 		username: String!
 	}
 
+	type Image {
+		imgName: String!
+		imgData: String!
+	}
+
 	type Auth {
 		token: ID!
 		user: User
@@ -43,6 +48,7 @@ const typeDefs = gql`
 		art: [Art]
 		comments(username: String!): Comment
 		likes: [Art]
+		image(imgName: String): Image
 	}
 
 	type Mutation {
@@ -53,6 +59,8 @@ const typeDefs = gql`
 			category: String!
 			price: String!
 			description: String!
+			imgName: String
+			imgData: String
 		): Art
 		addComment(artId: ID!, username: String!, commentText: String!): Art
 		addLike(artId: ID!, username: String!): Art

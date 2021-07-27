@@ -16,9 +16,8 @@ const artSchema = new Schema(
       minlength: 1,
       maxlength: 100,
     },
-    img: {
-      type: Schema.Types.ObjectId,
-      ref: 'Image',
+    imgName: {
+      type: String
     },
     category: {
       type: String,
