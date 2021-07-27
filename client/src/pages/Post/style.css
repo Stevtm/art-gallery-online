@@ -20,3 +20,10 @@ textarea {
     padding: .5em;
     border: solid 1px black;
 }
+
+button {
+    padding: .5em .5em;
+    border-radius: 50px;
+    background-color: rgb(112, 61, 24);
+    color: white;
+}
