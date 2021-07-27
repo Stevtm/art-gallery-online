@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_ART } from "../../utils/mutations";
+import "./style.css";	
 
 const Post = () => {
 	// create state for holding form data

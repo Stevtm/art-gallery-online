@@ -27,7 +27,7 @@ const TitleMessage = styled.h1`
 		transform: translate(-50%, -50%);
 		width: 400px;
 		height: 200px;
-		padding: 80px 40px;
+		padding: 20px 40px;
 		background: rgba(78, 44, 4, 0.5);
 		.main {
 			font-size: 50px;

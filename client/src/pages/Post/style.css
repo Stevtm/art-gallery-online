@@ -1,0 +1,22 @@
+h1, b, input {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+label {
+    display: block;
+}
+
+input {
+    padding: .5em;
+    border: solid 1px black;
+}
+
+textarea {
+    min-height: 8em;
+    min-width: 100%;
+    padding: .5em;
+    border: solid 1px black;
+}
