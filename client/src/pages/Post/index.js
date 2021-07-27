@@ -53,6 +53,7 @@ const Post = () => {
 					addArtDescription: formState.description,
 				},
 			});
+			// console.log(data);
 
 			window.location.assign("/");
 		} catch (err) {
