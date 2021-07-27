@@ -1,18 +1,4 @@
-const multer = require('multer');
-const imgModel = require('./models');
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads');
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now());
-  },
-});
-
-var upload = multer({ storage: storage });
-
-app.get('/', (req, res) => {
+app.get('/image', (req, res) => {
   imgModel.find({}, (err, items) => {
     if (err) {
       console.log(err);
@@ -23,7 +9,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/', upload.single('image'), (req, res, next) => {
+app.post('/image', upload.single('image'), (req, res, next) => {
   const obj = {
     name: req.body.name,
     description: req.body.description,

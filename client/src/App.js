@@ -27,6 +27,7 @@ import ArtGallery from "./pages/ArtGallery";
 // import styling
 import Container from "react-bootstrap/Container";
 import "./App.css";
+import ImageUpload from "./components/Image-Test";
 
 // GRAPHQL STUFF (TO BE UPDATED)
 const httpLink = createHttpLink({
@@ -75,7 +76,7 @@ const App = () => {
 						</Route>
 						<Route exact path="/">
 							<div className="App" style={{ position: "relative" }}>
-								<Carousel />
+								{/* <Carousel />
 								<Title />
 
 								<div>
@@ -85,7 +86,9 @@ const App = () => {
 											<Gallery />
 										</Fade>
 									</Container>
-								</div>
+								</div> */
+								<ImageUpload />
+								}
 							</div>
 						</Route>
 					</div>
