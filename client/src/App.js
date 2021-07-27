@@ -76,7 +76,7 @@ const App = () => {
 						</Route>
 						<Route exact path="/">
 							<div className="App" style={{ position: "relative" }}>
-								{/* <Carousel />
+								<Carousel />
 								<Title />
 
 								<div>
@@ -86,9 +86,9 @@ const App = () => {
 											<Gallery />
 										</Fade>
 									</Container>
-								</div> */
+								</div> 
 								<ImageUpload />
-								}
+								
 							</div>
 						</Route>
 					</div>

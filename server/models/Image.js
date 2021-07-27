@@ -8,7 +8,7 @@ const imageSchema = new Schema({
   imgData: {
     type: String,
     required: true,
-  },
+  }
 });
 
 const Image = model('Image', imageSchema);

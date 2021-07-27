@@ -62,6 +62,11 @@ const resolvers = {
 					{ new: true }
 				);
 
+				await Art.findByIdAndUpdate(
+					{ _id: art._id },
+					{ img: img._id }
+				)
+
 				return art;
 			}
 

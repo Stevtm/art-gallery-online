@@ -16,12 +16,10 @@ const artSchema = new Schema(
       minlength: 1,
       maxlength: 100,
     },
-    img: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Image',
-      },
-    ],
+    img: {
+      type: Schema.Types.ObjectId,
+      ref: 'Image',
+    },
     category: {
       type: String,
       required: ['photograph', 'drawing', 'painting'],
