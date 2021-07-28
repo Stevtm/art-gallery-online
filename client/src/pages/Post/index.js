@@ -4,6 +4,7 @@ import { ADD_ART } from "../../utils/mutations";
 import firebase from "firebase";
 // import axios from "axios";
 // import multer from "multer";
+import "./style.css";	
 
 const Post = () => {
 	// create state for holding form data
@@ -138,6 +139,7 @@ const Post = () => {
 					addArtImgData: formState.imgData,
 				},
 			});
+			// console.log(data);
 
 			window.location.assign("/");
 		} catch (err) {

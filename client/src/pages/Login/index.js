@@ -20,7 +20,7 @@ const Login = () => {
 
 		setFormState({
 			...formState,
-			[name]: value,
+			[name]: value
 		});
 	};
 
@@ -40,6 +40,7 @@ const Login = () => {
 			.auth()
 			.signInWithEmailAndPassword(email, password)
 			.then((userCredential) => {
+				console.log(userCredential);
 				console.log("logged in!");
 				loginSuccess = true;
 			})

@@ -1,0 +1,29 @@
+h1, b, input {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+label {
+    display: block;
+}
+
+input {
+    padding: .5em;
+    border: solid 1px black;
+}
+
+textarea {
+    min-height: 8em;
+    min-width: 100%;
+    padding: .5em;
+    border: solid 1px black;
+}
+
+button {
+    padding: .5em .5em;
+    border-radius: 50px;
+    background-color: rgb(112, 61, 24);
+    color: white;
+}
