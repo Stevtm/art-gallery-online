@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Art, Comment, Image } = require("../models");
+const { User, Art, Comment, Image, Img } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -22,16 +22,24 @@ const resolvers = {
 			return User.findOne({ username }).select("-__v").populate("art");
 		},
 		art: async () => {
-			return Art.find().select("-__v").populate("comments").populate("likes");
+			const art = Art.find()
+				.select("-__v")
+				.populate("comments")
+				.populate("likes")
+				.populate("img");
+
+			const img = Img.findById(art.imgData).select("--v");
+
+			return { art, img };
 		},
 		comments: async (parent, { username }) => {
 			const params = username ? { username } : {};
 			return Comment.find(params).sort({ createdAt: -1 });
 		},
-		image: async(parent, imgName) => {
+		image: async (parent, imgName) => {
 			console.log(imgName);
-			return Image.findOne({ imgName }).select("-v")
-		}
+			return Image.findOne({ imgName }).select("-v");
+		},
 	},
 
 	Mutation: {
@@ -52,19 +60,35 @@ const resolvers = {
 			return { token, user };
 		},
 		addArt: async (parent, args, context) => {
-			console.log(args);
+			console.log("args", args);
+
+			const imgId = args.imgData;
+
+			console.log("imgId", imgId);
+
 			if (context.user) {
-				
 				// create document in art collection
 				const art = await Art.create({
 					...args,
 					username: context.user.username,
 				});
 
+				// get the image document based on arg id
+				const image = await Img.findOne({ _id: imgId }).select("-__v");
+
+				console.log(image);
+
+				// update art document to include image details
+				const updatedArt = await Art.findByIdAndUpdate(
+					{ _id: art._id },
+					{ $push: { img: image } },
+					{ new: true }
+				);
+
 				// update user to include the art
 				await User.findByIdAndUpdate(
 					{ _id: context.user._id },
-					{ $push: { art: art._id } },
+					{ $push: { art: updatedArt._id } },
 					{ new: true }
 				);
 

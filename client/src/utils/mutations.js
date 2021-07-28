@@ -28,7 +28,7 @@ export const ADD_ART = gql`
 		$addArtCategory: String!
 		$addArtPrice: String!
 		$addArtDescription: String!
-		$addArtImgName: String
+		# $addArtImgName: String
 		$addArtImgData: String
 	) {
 		addArt(
@@ -36,7 +36,7 @@ export const ADD_ART = gql`
 			category: $addArtCategory
 			price: $addArtPrice
 			description: $addArtDescription
-			imgName: $addArtImgName
+			# imgName: $addArtImgName
 			imgData: $addArtImgData
 		) {
 			_id

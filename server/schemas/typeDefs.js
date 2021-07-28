@@ -11,13 +11,19 @@ const typeDefs = gql`
 	type Art {
 		_id: ID
 		title: String
-		imgName: String
+		# imgName: String
+		imgData: String
 		category: String
 		description: String
 		price: Int
 		tag: [String]
+		img: [Img]
 		comments: [Comment]
 		likeCount: Int
+	}
+
+	type Img {
+		img: String
 	}
 
 	type Comment {
@@ -59,7 +65,7 @@ const typeDefs = gql`
 			category: String!
 			price: String!
 			description: String!
-			imgName: String
+			# imgName: String
 			imgData: String
 		): Art
 		addComment(artId: ID!, username: String!, commentText: String!): Art

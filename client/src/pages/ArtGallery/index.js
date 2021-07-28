@@ -1,13 +1,13 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { QUERY_ART, QUERY_IMAGE } from "../../utils/queries";
+import { QUERY_ART } from "../../utils/queries";
 
 const ArtGallery = () => {
 	// query for art data
 	const { loading, data } = useQuery(QUERY_ART);
-	const imgData = useQuery(QUERY_IMAGE);
+	// const imgData = useQuery(QUERY_IMAGE);
 
-	console.log(imgData);
+	// console.log(imgData);
 
 	const artData = data?.art || [];
 
@@ -15,7 +15,7 @@ const ArtGallery = () => {
 		return <h2>Loading...</h2>;
 	}
 
-	
+	console.log(artData);
 
 	return (
 		<>
@@ -28,7 +28,7 @@ const ArtGallery = () => {
 						<h3>{art.description}</h3>
 						<h3>${art.price}</h3>
 						<h3>{art.category}</h3>
-						<h3>{art.imgName}</h3>
+						{/* <h3>{art.imgName}</h3> */}
 					</div>
 				);
 			})}
