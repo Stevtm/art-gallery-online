@@ -22,23 +22,23 @@ const resolvers = {
 			return User.findOne({ username }).select("-__v").populate("art");
 		},
 		art: async () => {
-			const art = Art.find()
+			return Art.find()
 				.select("-__v")
 				.populate("comments")
 				.populate("likes")
 				.populate("img");
 
-			const img = Img.findById(art.imgData).select("--v");
+			// const img = Img.findById(art.imgData).select("--v");
 
-			return { art, img };
+			// return { art, img };
 		},
 		comments: async (parent, { username }) => {
 			const params = username ? { username } : {};
 			return Comment.find(params).sort({ createdAt: -1 });
 		},
-		image: async (parent, imgName) => {
-			console.log(imgName);
-			return Image.findOne({ imgName }).select("-v");
+		image: async (parent, args) => {
+			console.log(args);
+			return Img.findOne({ imgData }).select("-__v");
 		},
 	},
 

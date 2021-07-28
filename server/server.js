@@ -85,4 +85,18 @@ ImageRouter.route("/uploadmulter").post(
 	}
 );
 
+ImageRouter.route("/uploadmulter").get((req, res) => {
+	console.log("req", req.query);
+	Img.findById({ _id: req.query.id }, "img createdAt", function (err, img) {
+		if (err) {
+			res.send(err);
+		}
+
+		console.log(img);
+
+		res.contentType("json");
+		res.send(img);
+	}).select("--v");
+});
+
 startup();

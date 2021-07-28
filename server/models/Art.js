@@ -17,7 +17,7 @@ const artSchema = new Schema(
 			minlength: 1,
 			maxlength: 100,
 		},
-		imgName: {
+		imgData: {
 			type: String,
 		},
 		category: {
