@@ -24,6 +24,7 @@ const Profile = () => {
 
 	return (
 		<>
+			<div>
 			<h1>
 				<b>Your Profile</b>
 			</h1>
@@ -45,6 +46,7 @@ const Profile = () => {
 			</>
 
 			<h2>Your Comments:</h2>
+			</div>
 		</>
 	);
 };

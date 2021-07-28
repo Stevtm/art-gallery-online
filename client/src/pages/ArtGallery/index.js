@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ART } from "../../utils/queries";
+import "./style.css";
 
 const ArtGallery = () => {
 	// query for art data
@@ -15,7 +16,7 @@ const ArtGallery = () => {
 
 	return (
 		<>
-			<h1>Gallery</h1>
+			<b>Gallery</b>
 			{artData.map((art) => {
 				// This should probably be broken out into its own react component
 				return (
