@@ -17,14 +17,14 @@ const typeDefs = gql`
 		description: String
 		price: Int
 		tag: [String]
-		img: [Img]
+		# img: [Img]
 		comments: [Comment]
 		likeCount: Int
 	}
 
-	type Img {
-		img: String
-	}
+	# type Img {
+	# 	img: String
+	# }
 
 	type Comment {
 		_id: ID

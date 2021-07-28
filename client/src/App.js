@@ -11,6 +11,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/storage";
 import firebaseConfig from "./firebase.config";
 
 // import React components
@@ -86,9 +87,8 @@ const App = () => {
 											<Gallery />
 										</Fade>
 									</Container>
-								</div> 
+								</div>
 								<ImageUpload />
-								
 							</div>
 						</Route>
 					</div>

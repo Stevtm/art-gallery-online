@@ -22,15 +22,7 @@ const resolvers = {
 			return User.findOne({ username }).select("-__v").populate("art");
 		},
 		art: async () => {
-			return Art.find()
-				.select("-__v")
-				.populate("comments")
-				.populate("likes")
-				.populate("img");
-
-			// const img = Img.findById(art.imgData).select("--v");
-
-			// return { art, img };
+			return Art.find().select("-__v").populate("comments").populate("likes");
 		},
 		comments: async (parent, { username }) => {
 			const params = username ? { username } : {};
@@ -74,21 +66,21 @@ const resolvers = {
 				});
 
 				// get the image document based on arg id
-				const image = await Img.findOne({ _id: imgId }).select("-__v");
+				// const image = await Img.findOne({ _id: imgId }).select("-__v");
 
-				console.log(image);
+				// console.log(image);
 
 				// update art document to include image details
-				const updatedArt = await Art.findByIdAndUpdate(
-					{ _id: art._id },
-					{ $push: { img: image } },
-					{ new: true }
-				);
+				// const updatedArt = await Art.findByIdAndUpdate(
+				// 	{ _id: art._id },
+				// 	{ $push: { img: image } },
+				// 	{ new: true }
+				// );
 
 				// update user to include the art
 				await User.findByIdAndUpdate(
 					{ _id: context.user._id },
-					{ $push: { art: updatedArt._id } },
+					{ $push: { art: art._id } },
 					{ new: true }
 				);
 

@@ -18,12 +18,6 @@ const ArtGallery = () => {
 
 	console.log(artData);
 
-	axios
-		.get(`/image/uploadmulter`, { params: { id: "6100b219d357440e4d5918b2" } })
-		.then((data) => {
-			console.log("data", data);
-		});
-
 	return (
 		<>
 			<h1>Gallery</h1>
@@ -35,8 +29,7 @@ const ArtGallery = () => {
 						<h3>{art.description}</h3>
 						<h3>${art.price}</h3>
 						<h3>{art.category}</h3>
-						<h3>{art.imgData}</h3>
-						{/* <h3>{art.imgName}</h3> */}
+						<img src={art.imgData} alt="uploaded art" width="300px"></img>
 					</div>
 				);
 			})}
