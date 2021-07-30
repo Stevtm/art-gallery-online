@@ -25,12 +25,15 @@ const ArtGallery = () => {
     }
 
     return artData.filter((art) => {
-      const artTitle = art.title.toLowerCase();
-      return artTitle.includes(query);
+      const artDescription = art.description.toLowerCase();
+      return artDescription.includes(query);
     });
   };
 
+  
   const filteredArt = filterArt(artData, query);
+
+
 
   if (loading) {
     return <h2>Loading...</h2>;
