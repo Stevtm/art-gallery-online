@@ -56,7 +56,7 @@ const Gallery = () => {
 			<Timeline theme={customTheme}>
 				<Events>
 					<ImageEvent
-						date="00/00/0000"
+						date={recentArt[recentArt.length - 1].createdAt}
 						className="text-center"
 						text="Image 1"
 						src={recentArt[recentArt.length - 1].imgData}
@@ -101,7 +101,7 @@ const Gallery = () => {
 					</ImageEvent>
 
 					<ImageEvent
-						date="06/03/2021"
+						date={recentArt[recentArt.length - 2].createdAt}
 						className="text-center"
 						text="Image 2"
 						src={recentArt[recentArt.length - 2].imgData}
@@ -145,7 +145,7 @@ const Gallery = () => {
 					</ImageEvent>
 
 					<ImageEvent
-						date="00/00/0000"
+						date={recentArt[recentArt.length - 3].createdAt}
 						className="text-center"
 						text="Image 3"
 						src={recentArt[recentArt.length - 3].imgData}
@@ -190,7 +190,7 @@ const Gallery = () => {
 					</ImageEvent>
 
 					<ImageEvent
-						date="06/03/2021"
+						date={recentArt[recentArt.length - 4].createdAt}
 						className="text-center"
 						text="Image 4"
 						src={recentArt[recentArt.length - 4].imgData}
