@@ -88,7 +88,6 @@ const App = () => {
 										</Fade>
 									</Container>
 								</div>
-								<ImageUpload />
 							</div>
 						</Route>
 					</div>
