@@ -9,11 +9,13 @@ import {
 } from "@merc/react-timeline";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import { QUERY_ART } from "../../utils/queries";
+import { useQuery } from '@apollo/client';
 // import Image from "react-bootstrap/Image";
-import Image1 from "../../assets/img/gallery/Image1.jpg";
-import Image2 from "../../assets/img/gallery/Image2.jpg";
-import Image3 from "../../assets/img/gallery/Image3.jpg";
-import Image4 from "../../assets/img/gallery/Image4.jpg";
+// import Image1 from "../../assets/img/gallery/Image1.jpg";
+// import Image2 from "../../assets/img/gallery/Image2.jpg";
+// import Image3 from "../../assets/img/gallery/Image3.jpg";
+// import Image4 from "../../assets/img/gallery/Image4.jpg";
 
 import "./style.css";
 
@@ -37,6 +39,17 @@ const customTheme = createTheme(themes.default, {
 });
 
 const Gallery = () => {
+	const { loading, data } = useQuery(QUERY_ART);
+
+	const recentArt = data?.art || [];
+
+	if (loading) {
+		return <h2>Loading...</h2>;
+	}
+
+	console.log(recentArt);
+
+
 	return (
 		<div id="gallery">
 			<h1 className="pt-3 text-center font-details-b pb-3">GALLERY</h1>
@@ -46,7 +59,7 @@ const Gallery = () => {
 						date="00/00/0000"
 						className="text-center"
 						text="Image 1"
-						src={Image1}
+						src={recentArt[recentArt.length - 1].imgData}
 						alt="Image 1"
 					>
 						<div className="d-flex justify-content-between flex-column mt-1">
@@ -91,7 +104,7 @@ const Gallery = () => {
 						date="06/03/2021"
 						className="text-center"
 						text="Image 2"
-						src={Image2}
+						src={recentArt[recentArt.length - 2].imgData}
 						alt="Image 2"
 					>
 						<div className="d-flex justify-content-between flex-column mt-1">
@@ -135,7 +148,7 @@ const Gallery = () => {
 						date="00/00/0000"
 						className="text-center"
 						text="Image 3"
-						src={Image3}
+						src={recentArt[recentArt.length - 3].imgData}
 						alt="Image 3"
 					>
 						<div className="d-flex justify-content-between flex-column mt-1">
@@ -180,7 +193,7 @@ const Gallery = () => {
 						date="06/03/2021"
 						className="text-center"
 						text="Image 4"
-						src={Image4}
+						src={recentArt[recentArt.length - 4].imgData}
 						alt="Image 4"
 					>
 						<div className="d-flex justify-content-between flex-column mt-1">

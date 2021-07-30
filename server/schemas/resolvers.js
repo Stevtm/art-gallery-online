@@ -22,7 +22,7 @@ const resolvers = {
 			return User.findOne({ username }).select("-__v").populate("art");
 		},
 		art: async () => {
-			return Art.find().select("-__v").populate("comments").populate("likes");
+			return Art.find().select("-__v").populate("comments").populate("likes").sort({ createdAt: -1 });
 		},
 		comments: async (parent, { username }) => {
 			const params = username ? { username } : {};
