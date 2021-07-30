@@ -47,8 +47,6 @@ const Gallery = () => {
     return <h2>Loading...</h2>;
   }
 
-  console.log(recentArt);
-
   return (
     <div id="gallery">
       <h1 className="pt-3 text-center font-details-b pb-3">GALLERY</h1>
