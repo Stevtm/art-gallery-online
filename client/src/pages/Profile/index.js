@@ -40,7 +40,7 @@ const Profile = () => {
 							<h3>{art.description}</h3>
 							<h3>${art.price}</h3>
 							<h3>{art.category}</h3>
-							<img src={art.imgData} alt="uploaded art" width="300px"></img>
+							<img src={art.imgData} alt="uploaded art" width="400px"></img>
 						</div>
 					);
 				})}
