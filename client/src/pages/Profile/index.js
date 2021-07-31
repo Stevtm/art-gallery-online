@@ -46,7 +46,7 @@ const Profile = () => {
 				})}
 			</>
 
-			<h2>Your Comments:</h2>
+			
 			</div>
 		</>
 	);

@@ -5,7 +5,7 @@
 	font-family: 'Times New Roman', Times, serif;
 }
 
-b, h2 {
+b {
 	display: flex;
 	align-items: center;
 	justify-content: center;
