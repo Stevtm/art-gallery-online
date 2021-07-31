@@ -14,7 +14,7 @@ const Post = () => {
 		price: "",
 		description: "",
 		// imgName: "",
-		imgData: "",
+		imgData: ""
 	});
 
 	// mutation configuration
@@ -139,7 +139,7 @@ const Post = () => {
 					addArtImgData: formState.imgData,
 				},
 			});
-			// console.log(data);
+			console.log(data);
 
 			window.location.assign("/");
 		} catch (err) {

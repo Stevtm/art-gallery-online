@@ -58,6 +58,7 @@ export const QUERY_ART = gql`
 			price
 			imgData
 			createdAt
+			user
 		}
 	}
 `;

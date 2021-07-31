@@ -41,8 +41,7 @@ const artSchema = new Schema(
 		likes: [likeSchema],
 		comments: [commentSchema],
 		user: {
-			type: Schema.Types.ObjectId,
-			ref: "User",
+			type: String
 		},
 		createdAt: {
 			type: Date,

@@ -43,6 +43,8 @@ const Gallery = () => {
 
   const recentArt = data?.art || [];
 
+  console.log(recentArt);
+
   if (loading) {
     return <h2>Loading...</h2>;
   }
