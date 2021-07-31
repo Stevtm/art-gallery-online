@@ -9,24 +9,6 @@ import { createTheme, themes } from '@merc/react-timeline';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 
-const customTheme = createTheme(themes.default, {
-  card: {
-    backgroundColor: '#fffff',
-  },
-  date: {
-    backgroundColor: '#000000',
-  },
-  marker: {
-    borderColor: '#000000',
-    border: '2px solid #000000',
-  },
-  timelineTrack: {
-    backgroundColor: '#000000',
-  },
-  UrlButton: {
-    color: '#000000',
-  },
-});
 
 const ArtGallery = () => {
   // query for art data
@@ -39,8 +21,6 @@ const ArtGallery = () => {
   // console.log(imgData);
 
   const artData = data?.art || [];
-
-  console.log(artData);
 
   const filterArt = (artData, query) => {
     if (!query) {
@@ -67,38 +47,36 @@ const ArtGallery = () => {
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
         ></SearchBar>
-        <Card
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-          }}
-        >
-          {filteredArt.map((art) => {
-            // This should probably be broken out into its own react component
-            return (
-              <div key={art._id} className="card">
-                <Card.Body
-                  className="card-body"
-                  style={{ width: '400px', padding: '20px', margin: '20px' }}
-                >
-                  <strong>Artist:</strong>
-                  <h3>{art.user}</h3>
-                  <strong>Title:</strong>
-                  <h3>{art.title}</h3>
-                  <strong>Description:</strong>
-                  <h3>{art.description}</h3>
-                  <strong>Price</strong>
-                  <h3>${art.price}</h3>
-                  <strong>Category:</strong>
-                  <h3>{art.category}</h3>
-                  <img src={art.imgData} alt="uploaded art" width="300px"></img>
-                </Card.Body>
-              </div>
-            );
-          })}
-        </Card>
+        <div class="row-cols-md-1 g-4">
+          <div class="col">
+            <Card>
+              {filteredArt.map((art) => {
+                // This should probably be broken out into its own react component
+                return (
+                  <div key={art._id} className="card">
+                    <Card.Body className="card-body">
+                      <img
+                        src={art.imgData}
+                        className="card-img-top"
+                        alt="uploaded art"
+                      ></img>
+                      <h5 className="card-title">Artist:</h5>
+                      <p className="card-text">{art.user}</p>
+                      <h5 className="card-title">Title:</h5>
+                      <p className="card-text">{art.title}</p>
+                      <h5 className="card-title">Description:</h5>
+                      <p className="card-text">{art.description}</p>
+                      <h5 className="card-title">Price:</h5>
+                      <p className="card-text">${art.price.toFixed(2)}</p>
+                      <h5 className="card-title">Category:</h5>
+                      <p className="card-text">{art.category}</p>
+                    </Card.Body>
+                  </div>
+                );
+              })}
+            </Card>
+          </div>
+        </div>
       </div>
     </>
   );
