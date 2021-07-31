@@ -33,18 +33,21 @@
 }
 
 .btn {
-  transform: translateY(0px);
+  /* transform: translateY(0px); */
   transition: 0.3s linear;
-  border-radius: 5px;
+  border-radius: 1px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   outline: none;
-  border: none;
+  /* border: solid; */
   color: #eee;
   padding: 0;
   margin-top: 170px;
   text-align: center;
+  font-size: 20px;
+  border: 2px;
+  
 }
 .btn:hover {
   color: green;
@@ -53,6 +56,10 @@
 #container {
   display: flex;
   width: 100%;
+}
+
+#container:hover {
+	border-style: solid;
 }
 
 .product-detail {
