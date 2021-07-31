@@ -4,11 +4,8 @@ import { QUERY_ART } from '../../utils/queries';
 //import axios from 'axios';
 import './style.css';
 import SearchBar from '../../components/Search';
-import { BrowserRouter as Router } from 'react-router-dom';
-import {
-  createTheme,
-  themes,
-} from '@merc/react-timeline';
+
+import { createTheme, themes } from '@merc/react-timeline';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 
@@ -70,47 +67,38 @@ const ArtGallery = () => {
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
         ></SearchBar>
-        <Router>
-          <Accordion>
-            <Card>
-              <Card.Body>
-                {filteredArt.map((art) => {
-                  // This should probably be broken out into its own react component
-                  return (
-                    <div
-                      key={art._id}
-                      className="d-flex justify-content-between flex-column mt-1"
-                    >
-                      <Accordion.Toggle
-                        as={Card.Header}
-                        eventKey="0"
-                        className="p-2 text-center accordian-main"
-                      >
-                        <Card.Body>
-                          <strong>Artist:</strong>
-                          <h3>{art.user}</h3>
-                          <strong>Title:</strong>
-                          <h3>{art.title}</h3>
-                          <strong>Description:</strong>
-                          <h3>{art.description}</h3>
-                          <strong>Price</strong>
-                          <h3>${art.price}</h3>
-                          <strong>Category:</strong>
-                          <h3>{art.category}</h3>
-                          <img
-                            src={art.imgData}
-                            alt="uploaded art"
-                            width="300px"
-                          ></img>
-                        </Card.Body>
-                      </Accordion.Toggle>
-                    </div>
-                  );
-                })}
-              </Card.Body>
-            </Card>
-          </Accordion>
-        </Router>
+        <Card
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
+          }}
+        >
+          {filteredArt.map((art) => {
+            // This should probably be broken out into its own react component
+            return (
+              <div key={art._id} className="card">
+                <Card.Body
+                  className="card-body"
+                  style={{ width: '400px', padding: '20px', margin: '20px' }}
+                >
+                  <strong>Artist:</strong>
+                  <h3>{art.user}</h3>
+                  <strong>Title:</strong>
+                  <h3>{art.title}</h3>
+                  <strong>Description:</strong>
+                  <h3>{art.description}</h3>
+                  <strong>Price</strong>
+                  <h3>${art.price}</h3>
+                  <strong>Category:</strong>
+                  <h3>{art.category}</h3>
+                  <img src={art.imgData} alt="uploaded art" width="300px"></img>
+                </Card.Body>
+              </div>
+            );
+          })}
+        </Card>
       </div>
     </>
   );
