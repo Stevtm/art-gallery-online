@@ -111,7 +111,7 @@ const Signup = () => {
 							<button className="btn d-block w-100" type="submit">
 								Submit
 							</button>
-							<Link to="/login">Login</Link>
+							{/* <Link to="/login">Login</Link> */}
 						</form>
 						{/* {error && <div>Sing up failed</div>} */}
 					</div>

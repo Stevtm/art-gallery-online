@@ -104,7 +104,8 @@ const Login = () => {
 							<button className="btn d-block w-100" type="submit">
 								Submit
 							</button>
-							<Link to="/signup">Sign up</Link>
+							<p>Don't have an account?<Link to="/signup"> Sign up</Link></p><span></span>
+							
 						</form>
 
 						{/* {error && <div>Login failed</div>} */}
