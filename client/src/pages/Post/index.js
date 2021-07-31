@@ -14,11 +14,11 @@ const Post = () => {
 		price: "",
 		description: "",
 		// imgName: "",
-		imgData: "",
+		imgData: ""
 	});
 
 	// mutation configuration
-	const [addArt, { error }] = useMutation(ADD_ART);
+	const [addArt] = useMutation(ADD_ART);
 
 	// update state based on form input changes
 
@@ -139,7 +139,7 @@ const Post = () => {
 					addArtImgData: formState.imgData,
 				},
 			});
-			// console.log(data);
+			console.log(data);
 
 			window.location.assign("/");
 		} catch (err) {

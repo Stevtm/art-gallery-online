@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 const commentSchema = require("./Comment");
 const likeSchema = require("./Like");
 const Img = require("./ImgModel");
+const dateFormat = require('../utils/dateFormat');
 
 const artSchema = new Schema(
 	{
@@ -40,9 +41,13 @@ const artSchema = new Schema(
 		likes: [likeSchema],
 		comments: [commentSchema],
 		user: {
-			type: Schema.Types.ObjectId,
-			ref: "User",
+			type: String
 		},
+		createdAt: {
+			type: Date,
+			default: Date.now,
+			get: (timeStamp) => dateFormat(timeStamp)
+		}
 	},
 	{
 		toJSON: {

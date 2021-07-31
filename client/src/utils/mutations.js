@@ -30,6 +30,7 @@ export const ADD_ART = gql`
 		$addArtDescription: String!
 		# $addArtImgName: String
 		$addArtImgData: String
+		$addArtUser: String
 	) {
 		addArt(
 			title: $addArtTitle
@@ -38,6 +39,7 @@ export const ADD_ART = gql`
 			description: $addArtDescription
 			# imgName: $addArtImgName
 			imgData: $addArtImgData
+			user: $addArtUser
 		) {
 			_id
 			title

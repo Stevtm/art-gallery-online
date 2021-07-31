@@ -20,6 +20,8 @@ const typeDefs = gql`
 		# img: [Img]
 		comments: [Comment]
 		likeCount: Int
+		createdAt: String
+		user: String
 	}
 
 	# type Img {
@@ -67,6 +69,7 @@ const typeDefs = gql`
 			description: String!
 			# imgName: String
 			imgData: String
+			user: String
 		): Art
 		addComment(artId: ID!, username: String!, commentText: String!): Art
 		addLike(artId: ID!, username: String!): Art

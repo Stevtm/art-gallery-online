@@ -62,7 +62,7 @@ const resolvers = {
 				// create document in art collection
 				const art = await Art.create({
 					...args,
-					username: context.user.username,
+					user: context.user.username,
 				});
 
 				// get the image document based on arg id

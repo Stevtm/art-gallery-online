@@ -12,7 +12,7 @@ const Login = () => {
 	const [formState, setFormState] = useState({ email: "", password: "" });
 
 	// mutation configuration
-	const [login, { error }] = useMutation(LOGIN);
+	const [login] = useMutation(LOGIN);
 
 	// update state based on form input changes
 	const handleChange = (event) => {
