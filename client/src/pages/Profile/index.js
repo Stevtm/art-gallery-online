@@ -42,7 +42,7 @@ const Profile = () => {
                   <div className="control">
                     <button className="btn">
                       <span className="price">${art.price}</span><span>  </span>
-                      <span className="buy">Get now</span>
+                      <span className="buy">Buy now</span>
                     </button>
                   </div>
                 </div>
