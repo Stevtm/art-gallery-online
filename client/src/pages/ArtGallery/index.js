@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ART } from '../../utils/queries';
-import axios from 'axios';
+//import axios from 'axios';
 import './style.css';
 import SearchBar from '../../components/Search';
 import { BrowserRouter as Router } from 'react-router-dom';

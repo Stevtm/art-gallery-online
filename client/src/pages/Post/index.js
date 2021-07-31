@@ -18,7 +18,7 @@ const Post = () => {
 	});
 
 	// mutation configuration
-	const [addArt, { error }] = useMutation(ADD_ART);
+	const [addArt] = useMutation(ADD_ART);
 
 	// update state based on form input changes
 

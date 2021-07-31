@@ -28,7 +28,7 @@ import ArtGallery from "./pages/ArtGallery";
 // import styling
 import Container from "react-bootstrap/Container";
 import "./App.css";
-import ImageUpload from "./components/Image-Test";
+//import ImageUpload from "./components/Image-Test";
 
 // GRAPHQL STUFF (TO BE UPDATED)
 const httpLink = createHttpLink({
