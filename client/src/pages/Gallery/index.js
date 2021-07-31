@@ -43,7 +43,7 @@ const Gallery = () => {
 
   const recentArt = data?.art || [];
 
-  console.log(recentArt);
+  console.log('recentArt', recentArt);
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -51,7 +51,7 @@ const Gallery = () => {
 
   return (
     <div id="gallery">
-      <h1 className="pt-3 text-center font-details-b pb-3">GALLERY</h1>
+      <h1 className="pt-3 text-center font-details-b pb-3">RECENT UPLOADS</h1>
       <Timeline theme={customTheme}>
         <Events>
           <ImageEvent
@@ -75,13 +75,11 @@ const Gallery = () => {
 
                     <Accordion.Collapse eventKey="0" className="text-left">
                       <Card.Body>
-                        <strong>Description:</strong> (Insert Artist
-                        Description)
+                        <strong>Description:</strong>{' '}
+                        {recentArt[recentArt.length - 1].description}
                         <hr />
-                        <strong>Artist:</strong>
-                        <ul className="list-styles pt-1">
-                          <li>(Insert Artist's Name)</li>
-                        </ul>
+                        <strong>Artist:</strong>{' '}
+                        {recentArt[recentArt.length - 1].user}
                         <hr />
                       </Card.Body>
                     </Accordion.Collapse>
@@ -93,7 +91,7 @@ const Gallery = () => {
                   SEE ARTIST
                 </UrlButton>
                 <UrlButton href="" target="_blank">
-                  SEE ART PIECE
+                  BUY FOR ${recentArt[recentArt.length - 1].price.toFixed(2)}
                 </UrlButton>
               </div>
             </div>
@@ -120,12 +118,11 @@ const Gallery = () => {
 
                     <Accordion.Collapse eventKey="0" className="text-left">
                       <Card.Body>
-                        <strong>Description:</strong> (Insert Art Description)
+                        <strong>Description:</strong>{' '}
+                        {recentArt[recentArt.length - 2].description}
                         <hr />
-                        <strong>Artist:</strong>
-                        <ul className="list-styles pt-1">
-                          <li>(Insert Artist Name)</li>
-                        </ul>
+                        <strong>Artist:</strong>{' '}
+                        {recentArt[recentArt.length - 2].user}
                         <hr />
                       </Card.Body>
                     </Accordion.Collapse>
@@ -137,7 +134,7 @@ const Gallery = () => {
                   SEE ARTIST
                 </UrlButton>
                 <UrlButton href="" target="_blank">
-                  SEE ART PIECE
+                  BUY FOR ${recentArt[recentArt.length - 2].price.toFixed(2)}
                 </UrlButton>
               </div>
             </div>
@@ -164,13 +161,11 @@ const Gallery = () => {
 
                     <Accordion.Collapse eventKey="0" className="text-left">
                       <Card.Body>
-                        <strong>Description:</strong> (Insert Artist
-                        Description)
+                        <strong>Description:</strong>{' '}
+                        {recentArt[recentArt.length - 3].description}
                         <hr />
-                        <strong>Artist:</strong>
-                        <ul className="list-styles pt-1">
-                          <li>(Insert Artist's Name)</li>
-                        </ul>
+                        <strong>Artist:</strong>{' '}
+                        {recentArt[recentArt.length - 3].user}
                         <hr />
                       </Card.Body>
                     </Accordion.Collapse>
@@ -182,7 +177,7 @@ const Gallery = () => {
                   SEE ARTIST
                 </UrlButton>
                 <UrlButton href="" target="_blank">
-                  SEE ART PIECE
+                  BUY FOR ${recentArt[recentArt.length - 3].price.toFixed(2)}
                 </UrlButton>
               </div>
             </div>
@@ -209,12 +204,11 @@ const Gallery = () => {
 
                     <Accordion.Collapse eventKey="0" className="text-left">
                       <Card.Body>
-                        <strong>Description:</strong> (Insert Art Description)
+                        <strong>Description:</strong>{' '}
+                        {recentArt[recentArt.length - 4].description}
                         <hr />
-                        <strong>Artist:</strong>
-                        <ul className="list-styles pt-1">
-                          <li>(Insert Artist Name)</li>
-                        </ul>
+                        <strong>Artist:</strong>{' '}
+                        {recentArt[recentArt.length - 4].user}
                         <hr />
                       </Card.Body>
                     </Accordion.Collapse>
@@ -226,7 +220,7 @@ const Gallery = () => {
                   SEE ARTIST
                 </UrlButton>
                 <UrlButton href="" target="_blank">
-                  SEE ART PIECE
+                  BUY FOR ${recentArt[recentArt.length - 4].price.toFixed(2)}
                 </UrlButton>
               </div>
             </div>
