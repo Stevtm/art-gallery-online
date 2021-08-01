@@ -77,11 +77,15 @@ const Login = () => {
 								value={formState.password}
 								onChange={handleChange}
 							/>
-							<button className="btn d-block w-100" type="submit">
+							<button className="btn d-block w-100 submit-button" type="submit">
 								Submit
 							</button>
 							<p>
-								Don't have an account?<Link to="/signup"> Sign up</Link>
+								Don't have an account?
+								<Link to="/signup" className="submit-button">
+									{" "}
+									Sign up
+								</Link>
 							</p>
 							<span></span>
 						</form>
