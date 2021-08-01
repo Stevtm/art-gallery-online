@@ -1,4 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 const { User, Art, Comment, Image, Img } = require("../models");
 const { signToken } = require("../utils/auth");
 
@@ -15,22 +16,55 @@ const resolvers = {
 
 			throw new AuthenticationError("Not logged in");
 		},
-		users: async () => {
-			return User.find().select("-__v").populate("art");
-		},
+		// users: async () => {
+		// 	return User.find().select("-__v").populate("art");
+		// },
 		user: async (parent, { username }) => {
 			return User.findOne({ username }).select("-__v").populate("art");
 		},
 		art: async () => {
 			return Art.find().select("-__v").populate("comments").populate("likes");
 		},
-		comments: async (parent, { username }) => {
-			const params = username ? { username } : {};
-			return Comment.find(params).sort({ createdAt: -1 });
-		},
-		image: async (parent, args) => {
-			console.log(args);
-			return Img.findOne({ imgData }).select("-__v");
+		// comments: async (parent, { username }) => {
+		// 	const params = username ? { username } : {};
+		// 	return Comment.find(params).sort({ createdAt: -1 });
+		// },
+		// image: async (parent, args) => {
+		// 	console.log(args);
+		// 	return Img.findOne({ imgData }).select("-__v");
+		// },
+		checkout: async (parent, { art }, context) => {
+			const url = new URL(context.headers.referer).origin;
+
+			const line_items = [];
+
+			// generate product id
+			const product = await stripe.products.create({
+				name: art.title,
+				description: art.description,
+			});
+
+			// generate price id using the product id
+			const price = await stripe.prices.create({
+				product: product.id,
+				unit_amount: art.price * 100,
+				currency: "cad",
+			});
+
+			// add price id to the line items array
+			line_items.push({
+				price: price.id,
+				quantity: 1,
+			});
+
+			const session = await stripe.checkout.sessions.create({
+				payment_method_types: ["card"],
+				line_items,
+				success_url: `${url}/success/session_id={CHECKOUT_SESSION_ID}`,
+				cancel_url: `${url}/`,
+			});
+
+			return { session: session.id };
 		},
 	},
 

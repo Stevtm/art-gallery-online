@@ -11,22 +11,16 @@ const typeDefs = gql`
 	type Art {
 		_id: ID
 		title: String
-		# imgName: String
 		imgData: String
 		category: String
 		description: String
 		price: Int
 		tag: [String]
-		# img: [Img]
 		comments: [Comment]
 		likeCount: Int
 		createdAt: String
 		user: String
 	}
-
-	# type Img {
-	# 	img: String
-	# }
 
 	type Comment {
 		_id: ID
@@ -49,14 +43,19 @@ const typeDefs = gql`
 		user: User
 	}
 
+	type Checkout {
+		session: ID
+	}
+
 	type Query {
 		me: User
 		users: [User]
 		user(username: String!): User
 		art: [Art]
-		comments(username: String!): Comment
-		likes: [Art]
-		image(imgName: String): Image
+		# comments(username: String!): Comment
+		# likes: [Art]
+		# image(imgName: String): Image
+		checkout(product: [ID]!): Checkout
 	}
 
 	type Mutation {
@@ -67,12 +66,11 @@ const typeDefs = gql`
 			category: String!
 			price: String!
 			description: String!
-			# imgName: String
 			imgData: String
 			user: String
 		): Art
-		addComment(artId: ID!, username: String!, commentText: String!): Art
-		addLike(artId: ID!, username: String!): Art
+		# addComment(artId: ID!, username: String!, commentText: String!): Art
+		# addLike(artId: ID!, username: String!): Art
 	}
 `;
 
