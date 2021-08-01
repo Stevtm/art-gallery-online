@@ -24,6 +24,7 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Post from "./pages/Post";
 import ArtGallery from "./pages/ArtGallery";
+import Success from "./pages/Success";
 
 // import styling
 import Container from "react-bootstrap/Container";
@@ -65,6 +66,7 @@ const App = () => {
 						<Route exact path="/profile/:username?" component={Profile} />
 						<Route exact path="/post" component={Post} />
 						<Route exact path="/artgallery" component={ArtGallery} />
+						<Route exact path="/success" component={Success} />
 						<Route exact path="/">
 							<div className="App" style={{ position: "relative" }}>
 								<Carousel />
