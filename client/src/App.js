@@ -25,6 +25,7 @@ import Profile from "./pages/Profile";
 import Post from "./pages/Post";
 import ArtGallery from "./pages/ArtGallery";
 import Success from "./pages/Success";
+import NoMatch from "./pages/NoMatch";
 
 // import styling
 import Container from "react-bootstrap/Container";
@@ -82,6 +83,8 @@ const App = () => {
 									</div>
 								</div>
 							</Route>
+
+							<Route component={NoMatch} />
 						</Switch>
 					</div>
 					{/* <Footer /> */}
