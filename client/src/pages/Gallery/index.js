@@ -36,9 +36,14 @@ const Gallery = () => {
 
 	// create array of the 4 most recent posts
 	const fourMostRecent = [];
+	if (recentArt.length === 0) {
+		return <h2>No art found!</h2>
+	}
 
 	for (let i = 1; i < 5; i++) {
 		fourMostRecent.push(recentArt[recentArt.length - i]);
+		console.log('four most recent', fourMostRecent);
+		console.log('recent art', recentArt)
 	}
 
 	if (loading) {

@@ -18,6 +18,10 @@ const ArtGallery = () => {
 
 	const artData = data?.art || [];
 
+	if (artData.length === 0) {
+		return <h2 className="text-center">No art found!</h2>
+	}
+
 	const filterArt = (artData, query) => {
 		if (!query) {
 			return artData;
