@@ -1,7 +1,7 @@
 // import dependency methods
 import React from "react";
 import Fade from "react-reveal/Fade";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
 	ApolloProvider,
 	ApolloClient,
@@ -60,27 +60,29 @@ const App = () => {
 				<div className="flex-column justify-flex-start min-100-vh">
 					<Nav />
 					<div className="container top-padding">
-						<Route exact path="/login" component={Login} />
-						<Route exact path="/signup" component={Signup} />
-						<Route exact path="/profile/:username?" component={Profile} />
-						<Route exact path="/post" component={Post} />
-						<Route exact path="/artgallery" component={ArtGallery} />
-						<Route exact path="/success" component={Success} />
-						<Route exact path="/">
-							<div className="App" style={{ position: "relative" }}>
-								<Carousel />
-								<Title />
+						<Switch>
+							<Route exact path="/login" component={Login} />
+							<Route exact path="/signup" component={Signup} />
+							<Route exact path="/profile/:username?" component={Profile} />
+							<Route exact path="/post" component={Post} />
+							<Route exact path="/artgallery" component={ArtGallery} />
+							<Route exact path="/success" component={Success} />
+							<Route exact path="/">
+								<div className="App" style={{ position: "relative" }}>
+									<Carousel />
+									<Title />
 
-								<div>
-									<Container className="container-box rounded">
-										<Fade duration={500}>
-											<hr />
-											<Gallery />
-										</Fade>
-									</Container>
+									<div>
+										<Container className="container-box rounded">
+											<Fade duration={500}>
+												<hr />
+												<Gallery />
+											</Fade>
+										</Container>
+									</div>
 								</div>
-							</div>
-						</Route>
+							</Route>
+						</Switch>
 					</div>
 					{/* <Footer /> */}
 				</div>
