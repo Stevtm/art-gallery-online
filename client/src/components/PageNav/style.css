@@ -1,22 +1,32 @@
 .logo {
-    width: 75%;
-  }
-  
-  .nav-theme {
-    background-color: #7c5314f8;
-    font-size: 20px;
-  }
+	width: 75%;
+}
 
-  .animate-navbar {
-    box-shadow: 1px 1px 1px #222;
-    animation: moveDown 0.5s ease-in-out;
-  }
-  
-  @keyframes moveDown {
-    from {
-      transform: translateY(-5rem);
-    }
-    to {
-      transform: translateY(0rem);
-    }
-  }
+.nav-theme {
+	background-color: #7c5314f8;
+	font-size: 20px;
+}
+
+.animate-navbar {
+	box-shadow: 1px 1px 1px #222;
+	animation: moveDown 0.5s ease-in-out;
+}
+
+a {
+	color: white;
+	padding: 0 6px;
+	font-size: 17px;
+}
+
+a:hover {
+	color: black;
+}
+
+@keyframes moveDown {
+	from {
+		transform: translateY(-5rem);
+	}
+	to {
+		transform: translateY(0rem);
+	}
+}
