@@ -80,6 +80,8 @@ const resolvers = {
 	Mutation: {
 		addUser: async (parent, args) => {
 			// add user to firebase
+			let signupSuccess = false;
+
 			await admin
 				.auth()
 				.createUser({
@@ -90,11 +92,16 @@ const resolvers = {
 					disabled: false,
 				})
 				.then((userRecord) => {
+					signupSuccess = true;
 					console.log("Successfully created a new user:", userRecord);
 				})
 				.catch((err) => {
 					console.log("Error creating new user", err);
 				});
+
+			if (signupSuccess === false) {
+				throw new AuthenticationError("Insufficient credentials.");
+			}
 
 			const user = await User.create({
 				email: args.email,
