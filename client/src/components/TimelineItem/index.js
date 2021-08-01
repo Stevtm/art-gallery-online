@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
 import {
-	createTheme,
-	Timeline,
-	themes,
-	Events,
 	UrlButton,
 	ImageEvent,
 } from "@merc/react-timeline";
@@ -78,7 +74,7 @@ const TimelineItem = ({ art }) => {
 				>
 					<UrlButton href={`/profile/${art.user}`}>SEE ARTIST</UrlButton>
 					<div onClick={submitCheckout}>
-						<UrlButton target="_blank">
+						<UrlButton href="#">
 							BUY FOR ${art.price.toFixed(2)}
 						</UrlButton>
 					</div>

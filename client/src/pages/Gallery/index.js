@@ -3,15 +3,11 @@ import {
 	createTheme,
 	Timeline,
 	themes,
-	Events,
-	UrlButton,
-	ImageEvent,
+	Events
 } from "@merc/react-timeline";
-import Accordion from "react-bootstrap/Accordion";
-import Card from "react-bootstrap/Card";
 import TimelineItem from "../../components/TimelineItem";
-import { QUERY_ART, QUERY_CHECKOUT } from "../../utils/queries";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { QUERY_ART } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
 import "./style.css";
 
 const customTheme = createTheme(themes.default, {
@@ -55,7 +51,7 @@ const Gallery = () => {
 			<Timeline theme={customTheme}>
 				<Events>
 					{fourMostRecent.map((art) => {
-						return <TimelineItem art={art}></TimelineItem>;
+						return <TimelineItem art={art} key={art._id}></TimelineItem>;
 					})}
 				</Events>
 			</Timeline>

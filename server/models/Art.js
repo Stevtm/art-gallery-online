@@ -1,7 +1,6 @@
 const { Schema, model } = require("mongoose");
 const commentSchema = require("./Comment");
 const likeSchema = require("./Like");
-const Img = require("./ImgModel");
 const dateFormat = require('../utils/dateFormat');
 
 const artSchema = new Schema(

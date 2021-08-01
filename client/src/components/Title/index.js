@@ -44,7 +44,7 @@ const Title = () => (
 		<div className="titleMessage">
 			<div className="heading">
 				<div className="main text-center mb-3">
-					<i class="fas fa-paint-brush"></i>
+					<i className="fas fa-paint-brush"></i>
 					<br />
 					Art Gallery
 					<br />

@@ -18,14 +18,6 @@ export const QUERY_ME = gql`
 	}
 `;
 
-// export const QUERY_USERS = gql`
-// 	query Query {
-// 		users {
-// 			_id
-// 			username
-// 		}
-// 	}
-// `;
 
 export const QUERY_USER = gql`
 	query Query($userUsername: String!) {

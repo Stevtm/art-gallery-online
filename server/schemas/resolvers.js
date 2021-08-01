@@ -19,23 +19,14 @@ const resolvers = {
 
 			throw new AuthenticationError("Not logged in");
 		},
-		// users: async () => {
-		// 	return User.find().select("-__v").populate("art");
-		// },
+
 		user: async (parent, { username }) => {
 			return User.findOne({ username }).select("-__v").populate("art");
 		},
 		art: async () => {
 			return Art.find().select("-__v").populate("comments").populate("likes");
 		},
-		// comments: async (parent, { username }) => {
-		// 	const params = username ? { username } : {};
-		// 	return Comment.find(params).sort({ createdAt: -1 });
-		// },
-		// image: async (parent, args) => {
-		// 	console.log(args);
-		// 	return Img.findOne({ imgData }).select("-__v");
-		// },
+
 		checkout: async (
 			parent,
 			{ title, description, imgData, price },
@@ -167,17 +158,6 @@ const resolvers = {
 					user: context.user.username,
 				});
 
-				// get the image document based on arg id
-				// const image = await Img.findOne({ _id: imgId }).select("-__v");
-
-				// console.log(image);
-
-				// update art document to include image details
-				// const updatedArt = await Art.findByIdAndUpdate(
-				// 	{ _id: art._id },
-				// 	{ $push: { img: image } },
-				// 	{ new: true }
-				// );
 
 				// update user to include the art
 				await User.findByIdAndUpdate(
@@ -191,26 +171,6 @@ const resolvers = {
 
 			throw new AuthenticationError("You need to be logged in!");
 		},
-		// addComment: async (parent, { artId, commentText, username }) => {
-		// 	const updatedArt = await Art.findOneAndUpdate(
-		// 		{ _id: artId },
-		// 		{
-		// 			$push: { comments: { commentText: commentText, username: username } },
-		// 		},
-		// 		{ new: true }
-		// 	);
-
-		// 	return updatedArt;
-		// },
-		// addLike: async (parent, { artId, username }) => {
-		// 	const updatedArt = await Art.findOneAndUpdate(
-		// 		{ _id: artId },
-		// 		{ $push: { likes: { username } } },
-		// 		{ new: true }
-		// 	);
-
-		// 	return updatedArt;
-		// },
 	},
 };
 

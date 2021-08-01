@@ -36,7 +36,6 @@ export const ADD_ART = gql`
 		$addArtCategory: String!
 		$addArtPrice: String!
 		$addArtDescription: String!
-		# $addArtImgName: String
 		$addArtImgData: String
 		$addArtUser: String
 	) {
@@ -45,7 +44,6 @@ export const ADD_ART = gql`
 			category: $addArtCategory
 			price: $addArtPrice
 			description: $addArtDescription
-			# imgName: $addArtImgName
 			imgData: $addArtImgData
 			user: $addArtUser
 		) {

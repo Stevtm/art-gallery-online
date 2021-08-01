@@ -4,10 +4,6 @@ import { QUERY_ART } from "../../utils/queries";
 //import axios from 'axios';
 import "./style.css";
 import SearchBar from "../../components/Search";
-
-import { createTheme, themes } from "@merc/react-timeline";
-import Accordion from "react-bootstrap/Accordion";
-import Card from "react-bootstrap/Card";
 import ArtCard from "../../components/ArtCard";
 
 const ArtGallery = () => {
@@ -54,7 +50,7 @@ const ArtGallery = () => {
 							.slice(0)
 							.reverse()
 							.map((art) => {
-								return <ArtCard art={art}></ArtCard>;
+								return <ArtCard art={art} key={art._id}></ArtCard>;
 							})}
 					</div>
 				</div>

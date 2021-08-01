@@ -1,9 +1,8 @@
 import React from "react";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME, QUERY_USER } from "../../utils/queries";
 import ArtCard from "../../components/ArtCard";
-import Auth from "../../utils/auth";
 import "./style.css";
 
 const Profile = () => {

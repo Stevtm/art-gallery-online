@@ -52,9 +52,7 @@ const typeDefs = gql`
 		users: [User]
 		user(username: String!): User
 		art: [Art]
-		# comments(username: String!): Comment
-		# likes: [Art]
-		# image(imgName: String): Image
+
 		checkout(
 			title: String!
 			description: String!
@@ -74,8 +72,7 @@ const typeDefs = gql`
 			imgData: String
 			user: String
 		): Art
-		# addComment(artId: ID!, username: String!, commentText: String!): Art
-		# addLike(artId: ID!, username: String!): Art
+
 	}
 `;
 
