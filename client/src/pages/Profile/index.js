@@ -16,22 +16,8 @@ const Profile = () => {
 
 	const userData = data?.me || data?.user || {};
 
-	// if the user is logged in, redirect to the personal profile
-	if (Auth.loggedIn && Auth.getProfile().data.username === userParam) {
-		return <Redirect to="/profile"></Redirect>;
-	}
-
 	if (loading) {
 		return <h2>Loading...</h2>;
-	}
-
-	if (!userData.username) {
-		return (
-			<h2>
-				You must be logged in to see this page. Use the navigation links above
-				to sign up or log in.
-			</h2>
-		);
 	}
 
 	return (
