@@ -37,12 +37,10 @@ export const QUERY_USER = gql`
 			art {
 				_id
 				title
-				img
-				category
 				description
+				category
 				price
-				tag
-				likeCount
+				imgData
 			}
 		}
 	}
