@@ -158,7 +158,6 @@ const resolvers = {
 					user: context.user.username,
 				});
 
-
 				// update user to include the art
 				await User.findByIdAndUpdate(
 					{ _id: context.user._id },
