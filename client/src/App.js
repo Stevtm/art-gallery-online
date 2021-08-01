@@ -60,21 +60,11 @@ const App = () => {
 				<div className="flex-column justify-flex-start min-100-vh">
 					<Nav />
 					<div className="container top-padding">
-						<Route exact path="/login">
-							<Login></Login>
-						</Route>
-						<Route exact path="/signup">
-							<Signup></Signup>
-						</Route>
-						<Route exact path="/profile">
-							<Profile></Profile>
-						</Route>
-						<Route exact path="/post">
-							<Post></Post>
-						</Route>
-						<Route exact path="/artgallery">
-							<ArtGallery></ArtGallery>
-						</Route>
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/signup" component={Signup} />
+						<Route exact path="/profile/:username?" component={Profile} />
+						<Route exact path="/post" component={Post} />
+						<Route exact path="/artgallery" component={ArtGallery} />
 						<Route exact path="/">
 							<div className="App" style={{ position: "relative" }}>
 								<Carousel />

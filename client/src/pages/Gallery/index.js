@@ -1,234 +1,112 @@
-import React from 'react';
+import React from "react";
 import {
-  createTheme,
-  Timeline,
-  themes,
-  Events,
-  UrlButton,
-  ImageEvent,
-} from '@merc/react-timeline';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import { QUERY_ART } from '../../utils/queries';
-import { useQuery } from '@apollo/client';
+	createTheme,
+	Timeline,
+	themes,
+	Events,
+	UrlButton,
+	ImageEvent,
+} from "@merc/react-timeline";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
+import { QUERY_ART } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
 // import Image from "react-bootstrap/Image";
 // import Image1 from "../../assets/img/gallery/Image1.jpg";
 // import Image2 from "../../assets/img/gallery/Image2.jpg";
 // import Image3 from "../../assets/img/gallery/Image3.jpg";
 // import Image4 from "../../assets/img/gallery/Image4.jpg";
 
-import './style.css';
+import "./style.css";
 
 const customTheme = createTheme(themes.default, {
-  card: {
-    backgroundColor: '#fffff',
-  },
-  date: {
-    backgroundColor: '#000000',
-  },
-  marker: {
-    borderColor: '#000000',
-    border: '2px solid #000000',
-  },
-  timelineTrack: {
-    backgroundColor: '#000000',
-  },
-  UrlButton: {
-    color: '#000000',
-  },
+	card: {
+		backgroundColor: "#fffff",
+	},
+	date: {
+		backgroundColor: "#000000",
+	},
+	marker: {
+		borderColor: "#000000",
+		border: "2px solid #000000",
+	},
+	timelineTrack: {
+		backgroundColor: "#000000",
+	},
+	UrlButton: {
+		color: "#000000",
+	},
 });
 
 const Gallery = () => {
-  const { loading, data } = useQuery(QUERY_ART);
+	const { loading, data } = useQuery(QUERY_ART);
 
-  const recentArt = data?.art || [];
+	const recentArt = data?.art || [];
 
-  console.log('recentArt', recentArt);
+	// create array of the 4 most recent posts
+	const fourMostRecent = [];
 
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
+	for (let i = 1; i < 5; i++) {
+		fourMostRecent.push(recentArt[recentArt.length - i]);
+	}
 
-  return (
-    <div id="gallery">
-      <h1 className="pt-3 text-center font-details-b pb-3">RECENT UPLOADS</h1>
-      <Timeline theme={customTheme}>
-        <Events>
-          <ImageEvent
-            date={recentArt[recentArt.length - 1].createdAt}
-            className="text-center"
-            text="Image 1"
-            src={recentArt[recentArt.length - 1].imgData}
-            alt="Image 1"
-          >
-            <div className="d-flex justify-content-between flex-column mt-1">
-              <div>
-                <Accordion>
-                  <Card>
-                    <Accordion.Toggle
-                      as={Card.Header}
-                      eventKey="0"
-                      className="p-2 text-center accordian-main"
-                    >
-                      ART DETAILS
-                    </Accordion.Toggle>
+	if (loading) {
+		return <h2>Loading...</h2>;
+	}
 
-                    <Accordion.Collapse eventKey="0" className="text-left">
-                      <Card.Body>
-                        <strong>Description:</strong>{' '}
-                        {recentArt[recentArt.length - 1].description}
-                        <hr />
-                        <strong>Artist:</strong>{' '}
-                        {recentArt[recentArt.length - 1].user}
-                        <hr />
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
-              </div>
-              <div className="d-flex justify-content-between flex-nowrap text-center">
-                <UrlButton href="" target="_blank">
-                  SEE ARTIST
-                </UrlButton>
-                <UrlButton href="" target="_blank">
-                  BUY FOR ${recentArt[recentArt.length - 1].price.toFixed(2)}
-                </UrlButton>
-              </div>
-            </div>
-          </ImageEvent>
+	return (
+		<div id="gallery">
+			<h1 className="pt-3 text-center font-details-b pb-3">RECENT UPLOADS</h1>
+			<Timeline theme={customTheme}>
+				<Events>
+					{fourMostRecent.map((art) => {
+						return (
+							<ImageEvent
+								date={art.createdAt}
+								className="text-center"
+								text={art.title}
+								src={art.imgData}
+								alt="Image 1"
+							>
+								<div className="d-flex justify-content-between flex-column mt-1">
+									<div>
+										<Accordion>
+											<Card>
+												<Accordion.Toggle
+													as={Card.Header}
+													eventKey="0"
+													className="p-2 text-center accordian-main"
+												>
+													ART DETAILS
+												</Accordion.Toggle>
 
-          <ImageEvent
-            date={recentArt[recentArt.length - 2].createdAt}
-            className="text-center"
-            text="Image 2"
-            src={recentArt[recentArt.length - 2].imgData}
-            alt="Image 2"
-          >
-            <div className="d-flex justify-content-between flex-column mt-1">
-              <div>
-                <Accordion>
-                  <Card>
-                    <Accordion.Toggle
-                      as={Card.Header}
-                      eventKey="0"
-                      className="p-2 text-center accordian-main"
-                    >
-                      ART DETAILS
-                    </Accordion.Toggle>
-
-                    <Accordion.Collapse eventKey="0" className="text-left">
-                      <Card.Body>
-                        <strong>Description:</strong>{' '}
-                        {recentArt[recentArt.length - 2].description}
-                        <hr />
-                        <strong>Artist:</strong>{' '}
-                        {recentArt[recentArt.length - 2].user}
-                        <hr />
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
-              </div>
-              <div className="d-flex justify-content-between flex-nowrap text-center">
-                <UrlButton href="" target="_blank">
-                  SEE ARTIST
-                </UrlButton>
-                <UrlButton href="" target="_blank">
-                  BUY FOR ${recentArt[recentArt.length - 2].price.toFixed(2)}
-                </UrlButton>
-              </div>
-            </div>
-          </ImageEvent>
-
-          <ImageEvent
-            date={recentArt[recentArt.length - 3].createdAt}
-            className="text-center"
-            text="Image 3"
-            src={recentArt[recentArt.length - 3].imgData}
-            alt="Image 3"
-          >
-            <div className="d-flex justify-content-between flex-column mt-1">
-              <div>
-                <Accordion>
-                  <Card>
-                    <Accordion.Toggle
-                      as={Card.Header}
-                      eventKey="0"
-                      className="p-2 text-center accordian-main"
-                    >
-                      ART DETAILS
-                    </Accordion.Toggle>
-
-                    <Accordion.Collapse eventKey="0" className="text-left">
-                      <Card.Body>
-                        <strong>Description:</strong>{' '}
-                        {recentArt[recentArt.length - 3].description}
-                        <hr />
-                        <strong>Artist:</strong>{' '}
-                        {recentArt[recentArt.length - 3].user}
-                        <hr />
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
-              </div>
-              <div className="d-flex justify-content-between flex-nowrap text-center">
-                <UrlButton href="" target="_blank">
-                  SEE ARTIST
-                </UrlButton>
-                <UrlButton href="" target="_blank">
-                  BUY FOR ${recentArt[recentArt.length - 3].price.toFixed(2)}
-                </UrlButton>
-              </div>
-            </div>
-          </ImageEvent>
-
-          <ImageEvent
-            date={recentArt[recentArt.length - 4].createdAt}
-            className="text-center"
-            text="Image 4"
-            src={recentArt[recentArt.length - 4].imgData}
-            alt="Image 4"
-          >
-            <div className="d-flex justify-content-between flex-column mt-1">
-              <div>
-                <Accordion>
-                  <Card>
-                    <Accordion.Toggle
-                      as={Card.Header}
-                      eventKey="0"
-                      className="p-2 text-center accordian-main"
-                    >
-                      ART DETAILS
-                    </Accordion.Toggle>
-
-                    <Accordion.Collapse eventKey="0" className="text-left">
-                      <Card.Body>
-                        <strong>Description:</strong>{' '}
-                        {recentArt[recentArt.length - 4].description}
-                        <hr />
-                        <strong>Artist:</strong>{' '}
-                        {recentArt[recentArt.length - 4].user}
-                        <hr />
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
-              </div>
-              <div className="d-flex justify-content-between flex-nowrap text-center">
-                <UrlButton href="" target="_blank">
-                  SEE ARTIST
-                </UrlButton>
-                <UrlButton href="" target="_blank">
-                  BUY FOR ${recentArt[recentArt.length - 4].price.toFixed(2)}
-                </UrlButton>
-              </div>
-            </div>
-          </ImageEvent>
-        </Events>
-      </Timeline>
-    </div>
-  );
+												<Accordion.Collapse eventKey="0" className="text-left">
+													<Card.Body>
+														<strong>Description:</strong> {art.description}
+														<hr />
+														<strong>Artist:</strong> {art.user}
+														<hr />
+													</Card.Body>
+												</Accordion.Collapse>
+											</Card>
+										</Accordion>
+									</div>
+									<div className="d-flex justify-content-between flex-nowrap text-center">
+										<UrlButton href={`/profile/${art.user}`}>
+											SEE ARTIST
+										</UrlButton>
+										<UrlButton href="" target="_blank">
+											BUY FOR ${art.price.toFixed(2)}
+										</UrlButton>
+									</div>
+								</div>
+							</ImageEvent>
+						);
+					})}
+				</Events>
+			</Timeline>
+		</div>
+	);
 };
 
 export default Gallery;
