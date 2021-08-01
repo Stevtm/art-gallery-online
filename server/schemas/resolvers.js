@@ -42,6 +42,7 @@ const resolvers = {
 			const product = await stripe.products.create({
 				name: art.title,
 				description: art.description,
+				images: [art.imgData],
 			});
 
 			// generate price id using the product id
@@ -123,26 +124,26 @@ const resolvers = {
 
 			throw new AuthenticationError("You need to be logged in!");
 		},
-		addComment: async (parent, { artId, commentText, username }) => {
-			const updatedArt = await Art.findOneAndUpdate(
-				{ _id: artId },
-				{
-					$push: { comments: { commentText: commentText, username: username } },
-				},
-				{ new: true }
-			);
+		// addComment: async (parent, { artId, commentText, username }) => {
+		// 	const updatedArt = await Art.findOneAndUpdate(
+		// 		{ _id: artId },
+		// 		{
+		// 			$push: { comments: { commentText: commentText, username: username } },
+		// 		},
+		// 		{ new: true }
+		// 	);
 
-			return updatedArt;
-		},
-		addLike: async (parent, { artId, username }) => {
-			const updatedArt = await Art.findOneAndUpdate(
-				{ _id: artId },
-				{ $push: { likes: { username } } },
-				{ new: true }
-			);
+		// 	return updatedArt;
+		// },
+		// addLike: async (parent, { artId, username }) => {
+		// 	const updatedArt = await Art.findOneAndUpdate(
+		// 		{ _id: artId },
+		// 		{ $push: { likes: { username } } },
+		// 		{ new: true }
+		// 	);
 
-			return updatedArt;
-		},
+		// 	return updatedArt;
+		// },
 	},
 };
 

@@ -9,14 +9,9 @@ import {
 } from "@merc/react-timeline";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
-import { QUERY_ART } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
-// import Image from "react-bootstrap/Image";
-// import Image1 from "../../assets/img/gallery/Image1.jpg";
-// import Image2 from "../../assets/img/gallery/Image2.jpg";
-// import Image3 from "../../assets/img/gallery/Image3.jpg";
-// import Image4 from "../../assets/img/gallery/Image4.jpg";
-
+import TimelineItem from "../../components/TimelineItem";
+import { QUERY_ART, QUERY_CHECKOUT } from "../../utils/queries";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import "./style.css";
 
 const customTheme = createTheme(themes.default, {
@@ -39,9 +34,9 @@ const customTheme = createTheme(themes.default, {
 });
 
 const Gallery = () => {
-	const { loading, data } = useQuery(QUERY_ART);
+	const { loading, data: artData } = useQuery(QUERY_ART);
 
-	const recentArt = data?.art || [];
+	const recentArt = artData?.art || [];
 
 	// create array of the 4 most recent posts
 	const fourMostRecent = [];
@@ -60,48 +55,7 @@ const Gallery = () => {
 			<Timeline theme={customTheme}>
 				<Events>
 					{fourMostRecent.map((art) => {
-						return (
-							<ImageEvent
-								date={art.createdAt}
-								className="text-center"
-								text={art.title}
-								src={art.imgData}
-								alt="Image 1"
-							>
-								<div className="d-flex justify-content-between flex-column mt-1">
-									<div>
-										<Accordion>
-											<Card>
-												<Accordion.Toggle
-													as={Card.Header}
-													eventKey="0"
-													className="p-2 text-center accordian-main"
-												>
-													ART DETAILS
-												</Accordion.Toggle>
-
-												<Accordion.Collapse eventKey="0" className="text-left">
-													<Card.Body>
-														<strong>Description:</strong> {art.description}
-														<hr />
-														<strong>Artist:</strong> {art.user}
-														<hr />
-													</Card.Body>
-												</Accordion.Collapse>
-											</Card>
-										</Accordion>
-									</div>
-									<div className="d-flex justify-content-between flex-nowrap text-center">
-										<UrlButton href={`/profile/${art.user}`}>
-											SEE ARTIST
-										</UrlButton>
-										<UrlButton href="" target="_blank">
-											BUY FOR ${art.price.toFixed(2)}
-										</UrlButton>
-									</div>
-								</div>
-							</ImageEvent>
-						);
+						return <TimelineItem art={art}></TimelineItem>;
 					})}
 				</Events>
 			</Timeline>

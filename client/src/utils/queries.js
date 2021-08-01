@@ -18,15 +18,14 @@ export const QUERY_ME = gql`
 	}
 `;
 
-// Don't think we ever use this query - can can possibly remove.
-export const QUERY_USERS = gql`
-	query Query {
-		users {
-			_id
-			username
-		}
-	}
-`;
+// export const QUERY_USERS = gql`
+// 	query Query {
+// 		users {
+// 			_id
+// 			username
+// 		}
+// 	}
+// `;
 
 export const QUERY_USER = gql`
 	query Query($userUsername: String!) {
@@ -61,21 +60,29 @@ export const QUERY_ART = gql`
 	}
 `;
 
-export const QUERY_COMMENTS = gql`
-	query Query($commentsUsername: String!) {
-		comments(username: $commentsUsername) {
-			_id
-			commentText
-			createdAt
+export const QUERY_CHECKOUT = gql`
+	query Query($checkoutProduct: ID!) {
+		checkout(product: $checkoutProduct) {
+			session
 		}
 	}
 `;
 
-export const QUERY_IMAGE = gql`
-	query Query($imageImgName: String) {
-		image(imgName: $imageImgName) {
-			imgName
-			imgData
-		}
-	}
-`;
+// export const QUERY_COMMENTS = gql`
+// 	query Query($commentsUsername: String!) {
+// 		comments(username: $commentsUsername) {
+// 			_id
+// 			commentText
+// 			createdAt
+// 		}
+// 	}
+// `;
+
+// export const QUERY_IMAGE = gql`
+// 	query Query($imageImgName: String) {
+// 		image(imgName: $imageImgName) {
+// 			imgName
+// 			imgData
+// 		}
+// 	}
+// `;
