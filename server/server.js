@@ -5,10 +5,26 @@ const path = require("path");
 const { authMiddleware } = require("./utils/auth");
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
-// const multer = require("multer");
-// const Image = require("./models");
-// const { Img } = require("./models");
-// const ImageRouter = express.Router();
+const admin = require("firebase-admin");
+require("dotenv").config();
+// initialize firebase
+const serviceAccount = {
+	type: process.env.FIREBASE_TYPE,
+	project_id: process.env.FIREBASE_PROJECT_ID,
+	private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+	private_key: process.env.FIREBASE_PRIVATE_KEY,
+	client_email: process.env.FIREBASE_CLIENT_EMAIL,
+	client_id: process.env.FIREBASE_CLIENT_ID,
+	auth_uri: process.env.FIREBASE_AUTH_URI,
+	token_uri: process.env.FIREBASE_TOKEN_URI,
+	auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER,
+	client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL,
+};
+
+admin.initializeApp({
+	credential: admin.credential.cert(serviceAccount),
+});
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
@@ -17,8 +33,6 @@ const server = new ApolloServer({
 	context: authMiddleware,
 });
 var cors = require("cors");
-
-// console.log(Image.Image);
 
 const startup = async () => {
 	await server.start();

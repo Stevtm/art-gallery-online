@@ -1,5 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const admin = require("firebase-admin");
 const { User, Art, Comment, Image, Img } = require("../models");
 const { signToken } = require("../utils/auth");
 
@@ -76,7 +77,27 @@ const resolvers = {
 
 	Mutation: {
 		addUser: async (parent, args) => {
-			const user = await User.create(args);
+			// add user to firebase
+			await admin
+				.auth()
+				.createUser({
+					email: args.email,
+					emailVerified: false,
+					password: args.password,
+					displayName: args.username,
+					disabled: false,
+				})
+				.then((userRecord) => {
+					console.log("Successfully created a new user:", userRecord);
+				})
+				.catch((err) => {
+					console.log("Error creating new user", err);
+				});
+
+			const user = await User.create({
+				email: args.email,
+				username: args.username,
+			});
 			const token = signToken(user);
 
 			return { token, user };
