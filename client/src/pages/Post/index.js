@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_ART } from "../../utils/mutations";
-import firebase from "firebase";
+// import firebase from "firebase";
 // import axios from "axios";
 // import multer from "multer";
-import "./style.css";	
+import "./style.css";
 
 const Post = () => {
 	// create state for holding form data
@@ -14,7 +14,7 @@ const Post = () => {
 		price: "",
 		description: "",
 		// imgName: "",
-		imgData: ""
+		imgData: "",
 	});
 
 	// mutation configuration
@@ -69,28 +69,24 @@ const Post = () => {
 
 	// declare variables for firebase upload
 	const uploadImage = async (event) => {
-		var storage = firebase.storage();
-
-		const files = event.target.files;
-
-		const imgName = "img-" + Date.now();
-
-		await storage
-			.ref("Images/" + imgName + ".png")
-			.put(files[0])
-			.on("state_changed", alert("success"), alert, () => {
-				storage
-					.ref("Images/")
-					.child(imgName + ".png")
-					.getDownloadURL()
-					.then((url) => {
-						setFormState({
-							...formState,
-							imgData: url,
-						});
-					});
-			});
-
+		// var storage = firebase.storage();
+		// const files = event.target.files;
+		// const imgName = "img-" + Date.now();
+		// await storage
+		// 	.ref("Images/" + imgName + ".png")
+		// 	.put(files[0])
+		// 	.on("state_changed", alert("success"), alert, () => {
+		// 		storage
+		// 			.ref("Images/")
+		// 			.child(imgName + ".png")
+		// 			.getDownloadURL()
+		// 			.then((url) => {
+		// 				setFormState({
+		// 					...formState,
+		// 					imgData: url,
+		// 				});
+		// 			});
+		// 	});
 		// uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
 		// 	setFormState({
 		// 		...formState,

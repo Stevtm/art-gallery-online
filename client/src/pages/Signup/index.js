@@ -6,6 +6,9 @@ import "firebase/auth";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import "./style.css";
+require("dotenv").config();
+
+console.log(process.env);
 
 const Signup = () => {
 	// set initial form state
@@ -39,23 +42,23 @@ const Signup = () => {
 		const email = formState.email;
 
 		// create user in firebase with credentials
-		let signUpSuccess = false;
+		// let signUpSuccess = false;
 
-		await firebase
-			.auth()
-			.createUserWithEmailAndPassword(email, password)
-			.then((userCredential) => {
-				// Signed in
-				console.log("user created!");
-				signUpSuccess = true;
-			})
-			.catch((error) => {
-				alert(`Could not create user. `);
-			});
+		// await firebase
+		// 	.auth()
+		// 	.createUserWithEmailAndPassword(email, password)
+		// 	.then((userCredential) => {
+		// 		// Signed in
+		// 		console.log("user created!");
+		// 		signUpSuccess = true;
+		// 	})
+		// 	.catch((error) => {
+		// 		alert(`Could not create user. `);
+		// 	});
 
-		if (!signUpSuccess) {
-			return;
-		}
+		// if (!signUpSuccess) {
+		// 	return;
+		// }
 
 		// create user in database
 		try {
@@ -63,6 +66,7 @@ const Signup = () => {
 				variables: {
 					addUserUsername: username,
 					addUserEmail: email,
+					addUserPassword: password,
 				},
 			});
 

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../../utils/mutations";
-import firebase from "firebase/app";
-import "firebase/auth";
+// import firebase from "firebase/app";
+// import "firebase/auth";
 import Auth from "../../utils/auth";
 import "./style.css";
 
@@ -20,7 +20,7 @@ const Login = () => {
 
 		setFormState({
 			...formState,
-			[name]: value
+			[name]: value,
 		});
 	};
 
@@ -34,34 +34,35 @@ const Login = () => {
 		const password = formState.password;
 
 		// check if the credentials are correct
-		let loginSuccess = false;
+		// let loginSuccess = false;
 
-		await firebase
-			.auth()
-			.signInWithEmailAndPassword(email, password)
-			.then((userCredential) => {
-				console.log(userCredential);
-				console.log("logged in!");
-				loginSuccess = true;
-			})
-			.catch((error) => {
-				alert("Login credentials are incorrect.");
-				// clear form values
-				setFormState({
-					email: "",
-					password: "",
-				});
-			});
+		// await firebase
+		// 	.auth()
+		// 	.signInWithEmailAndPassword(email, password)
+		// 	.then((userCredential) => {
+		// 		console.log(userCredential);
+		// 		console.log("logged in!");
+		// 		loginSuccess = true;
+		// 	})
+		// 	.catch((error) => {
+		// 		alert("Login credentials are incorrect.");
+		// 		// clear form values
+		// 		setFormState({
+		// 			email: "",
+		// 			password: "",
+		// 		});
+		// 	});
 
-		if (!loginSuccess) {
-			return;
-		}
+		// if (!loginSuccess) {
+		// 	return;
+		// }
 
 		// sign in user from database and assign token
 		try {
 			const { data } = await login({
 				variables: {
 					loginEmail: email,
+					loginPassword: password,
 				},
 			});
 
@@ -104,8 +105,10 @@ const Login = () => {
 							<button className="btn d-block w-100" type="submit">
 								Submit
 							</button>
-							<p>Don't have an account?<Link to="/signup"> Sign up</Link></p><span></span>
-							
+							<p>
+								Don't have an account?<Link to="/signup"> Sign up</Link>
+							</p>
+							<span></span>
 						</form>
 
 						{/* {error && <div>Login failed</div>} */}

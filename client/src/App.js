@@ -9,10 +9,10 @@ import {
 	createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/storage";
-import firebaseConfig from "./firebase.config";
+// import firebase from "firebase/app";
+// import "firebase/auth";
+// import "firebase/storage";
+// import firebaseConfig from "./firebase.config";
 
 // import React components
 import Nav from "./components/PageNav";
@@ -52,7 +52,7 @@ const client = new ApolloClient({
 });
 
 // initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
 const App = () => {
 	return (
