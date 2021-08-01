@@ -3,6 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_CHECKOUT } from "../../utils/queries";
 import { Card, Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import "./style.css";
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
@@ -29,6 +30,43 @@ const ArtCard = ({ art }) => {
 		});
 	}
 
+	const renderButtonsFunction = () => {
+		if (window.location.href.includes("profile")) {
+			return (
+				<div className="buttons">
+					<Button
+						variant="primary"
+						className="card-button"
+						onClick={submitCheckout}
+					>
+						BUY FOR ${art.price.toFixed(2)}
+					</Button>
+				</div>
+			);
+		} else {
+			return (
+				<div className="buttons">
+					<Button
+						variant="secondary"
+						className="card-button"
+						href={`profile/${art.user}`}
+					>
+						SEE ARTIST
+					</Button>
+					<Button
+						variant="primary"
+						className="card-button"
+						onClick={submitCheckout}
+					>
+						BUY FOR ${art.price.toFixed(2)}
+					</Button>
+				</div>
+			);
+		}
+	};
+
+	const renderButtons = renderButtonsFunction();
+
 	return (
 		<>
 			<Card className="art-card">
@@ -43,22 +81,7 @@ const ArtCard = ({ art }) => {
 						<b>Description: </b> {art.description}
 						<b>Artist: </b> {art.user}
 					</Card.Text>
-					<div className="buttons">
-						<Button
-							variant="secondary"
-							className="card-button"
-							href={`profile/${art.user}`}
-						>
-							SEE ARTIST
-						</Button>
-						<Button
-							variant="primary"
-							className="card-button"
-							onClick={submitCheckout}
-						>
-							BUY FOR ${art.price.toFixed(2)}
-						</Button>
-					</div>
+					{renderButtons}
 				</Card.Body>
 			</Card>
 		</>
