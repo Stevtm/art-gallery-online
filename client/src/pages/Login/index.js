@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../../utils/mutations";
-// import firebase from "firebase/app";
-// import "firebase/auth";
 import Auth from "../../utils/auth";
 import "./style.css";
 
@@ -33,30 +31,6 @@ const Login = () => {
 		const email = formState.email;
 		const password = formState.password;
 
-		// check if the credentials are correct
-		// let loginSuccess = false;
-
-		// await firebase
-		// 	.auth()
-		// 	.signInWithEmailAndPassword(email, password)
-		// 	.then((userCredential) => {
-		// 		console.log(userCredential);
-		// 		console.log("logged in!");
-		// 		loginSuccess = true;
-		// 	})
-		// 	.catch((error) => {
-		// 		alert("Login credentials are incorrect.");
-		// 		// clear form values
-		// 		setFormState({
-		// 			email: "",
-		// 			password: "",
-		// 		});
-		// 	});
-
-		// if (!loginSuccess) {
-		// 	return;
-		// }
-
 		// sign in user from database and assign token
 		try {
 			const { data } = await login({
@@ -70,6 +44,7 @@ const Login = () => {
 			const token = data.login.token;
 			Auth.login(token);
 		} catch (err) {
+			alert(err);
 			console.log(err);
 		}
 	};

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_ART } from "../../utils/mutations";
-// import firebase from "firebase";
+import firebase from "firebase";
 // import axios from "axios";
 // import multer from "multer";
 import "./style.css";
@@ -20,79 +20,33 @@ const Post = () => {
 	// mutation configuration
 	const [addArt] = useMutation(ADD_ART);
 
-	// update state based on form input changes
-
-	// const [multerImage, setMulterImage] = useState("");
-
-	// const generateImageName = function () {
-	// 	return "multer-image-" + Date.now();
-	// };
-
-	// const uploadImage = (e, method) => {
-	// 	const test = generateImageName();
-	// 	let imageObj = {};
-	// 	console.log(test);
-	// 	let imageFormObj = new FormData();
-
-	// 	imageFormObj.append("imgName", test);
-	// 	imageFormObj.append("imgData", e.target.files[0]);
-
-	// 	// setFormState({
-	// 	// 	...formState,
-	// 	// 	imgName: test,
-	// 	// 	// imgData: e.target.files[0],
-	// 	// });
-	// 	setMulterImage({
-	// 		multerImage: URL.createObjectURL(e.target.files[0]),
-	// 	});
-
-	// 	axios
-	// 		.post(`/image/uploadmulter`, imageFormObj, {
-	// 			headers: {
-	// 				"Access-Control-Allow-Origin": "*",
-	// 			},
-	// 		})
-	// 		.then((data) => {
-	// 			console.log("data", data.data.new_img._id);
-	// 			setFormState({
-	// 				...formState,
-	// 				imgData: data.data.new_img._id,
-	// 			});
-	// 			// if (data.data.success) {
-	// 			// 	alert("Image has been successfully uploaded using multer");
-	// 			// }
-	// 		})
-	// 		.catch((err) => {
-	// 			alert("Error while uploading image");
-	// 		});
-	// };
-
 	// declare variables for firebase upload
 	const uploadImage = async (event) => {
-		// var storage = firebase.storage();
-		// const files = event.target.files;
-		// const imgName = "img-" + Date.now();
-		// await storage
-		// 	.ref("Images/" + imgName + ".png")
-		// 	.put(files[0])
-		// 	.on("state_changed", alert("success"), alert, () => {
-		// 		storage
-		// 			.ref("Images/")
-		// 			.child(imgName + ".png")
-		// 			.getDownloadURL()
-		// 			.then((url) => {
-		// 				setFormState({
-		// 					...formState,
-		// 					imgData: url,
-		// 				});
-		// 			});
-		// 	});
-		// uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
-		// 	setFormState({
-		// 		...formState,
-		// 		imgData: url,
-		// 	});
-		// });
+		var storage = firebase.storage();
+		const files = event.target.files;
+		const imgName = "img-" + Date.now();
+		await storage
+			.ref("Images/" + imgName + ".png")
+			.put(files[0])
+			.on(
+				"state_changed",
+				alert(
+					"Image uploaded started successfully. Please wait a few seconds for the upload to complete. "
+				),
+				alert,
+				async () => {
+					await storage
+						.ref("Images/")
+						.child(imgName + ".png")
+						.getDownloadURL()
+						.then((url) => {
+							setFormState({
+								...formState,
+								imgData: url,
+							});
+						});
+				}
+			);
 	};
 
 	const handleChange = (event) => {
@@ -199,8 +153,6 @@ const Post = () => {
 				></textarea>
 				<div>
 					<h4>Upload</h4>
-					<p>Test of an upload to our server.</p>
-
 					<input id="img" type="file" onChange={(e) => uploadImage(e)} />
 				</div>
 				<br></br>

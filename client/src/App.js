@@ -9,10 +9,10 @@ import {
 	createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-// import firebase from "firebase/app";
-// import "firebase/auth";
-// import "firebase/storage";
-// import firebaseConfig from "./firebase.config";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/storage";
+import firebaseConfig from "./firebase.config";
 
 // import React components
 import Nav from "./components/PageNav";
@@ -29,7 +29,6 @@ import Success from "./pages/Success";
 // import styling
 import Container from "react-bootstrap/Container";
 import "./App.css";
-//import ImageUpload from "./components/Image-Test";
 
 // GRAPHQL STUFF (TO BE UPDATED)
 const httpLink = createHttpLink({
@@ -52,7 +51,7 @@ const client = new ApolloClient({
 });
 
 // initialize Firebase
-// firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 const App = () => {
 	return (

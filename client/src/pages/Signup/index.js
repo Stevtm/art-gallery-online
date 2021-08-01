@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Link } from "react-router-dom";
-import firebase from "firebase/app";
-import "firebase/auth";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import "./style.css";
-require("dotenv").config();
-
-console.log(process.env);
 
 const Signup = () => {
 	// set initial form state
@@ -41,25 +35,6 @@ const Signup = () => {
 		const password = formState.password;
 		const email = formState.email;
 
-		// create user in firebase with credentials
-		// let signUpSuccess = false;
-
-		// await firebase
-		// 	.auth()
-		// 	.createUserWithEmailAndPassword(email, password)
-		// 	.then((userCredential) => {
-		// 		// Signed in
-		// 		console.log("user created!");
-		// 		signUpSuccess = true;
-		// 	})
-		// 	.catch((error) => {
-		// 		alert(`Could not create user. `);
-		// 	});
-
-		// if (!signUpSuccess) {
-		// 	return;
-		// }
-
 		// create user in database
 		try {
 			const { data } = await addUser({
@@ -74,6 +49,7 @@ const Signup = () => {
 			const token = data.addUser.token;
 			Auth.login(token);
 		} catch (err) {
+			alert("Err", err);
 			console.error(err);
 		}
 	};
