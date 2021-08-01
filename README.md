@@ -2,7 +2,7 @@
 
 This application is an online art gallery that allows put their original art up for sale and browse art pieces that have been posted by other users in the community. The application is built with the MERN stack with a GraphQL API. A Stripe placeholder is configured to direct users to a payment page for purchasing art.
 
-Visit the deployed application here: <link>
+Visit the deployed application here: https://shrouded-sands-03163.herokuapp.com/
 
 The following tolols & packages were used for development:
 
