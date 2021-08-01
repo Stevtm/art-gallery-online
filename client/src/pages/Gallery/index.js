@@ -51,7 +51,7 @@ const Gallery = () => {
 
 	return (
 		<div id="gallery">
-			<h1 className="pt-3 text-center font-details-b pb-3">RECENT UPLOADS</h1>
+			<h2 className="pt-3 text-center font-details-b pb-3">RECENT UPLOADS</h2>
 			<Timeline theme={customTheme}>
 				<Events>
 					{fourMostRecent.map((art) => {

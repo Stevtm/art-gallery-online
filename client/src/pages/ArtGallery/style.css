@@ -1,6 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
 
 p {
-	border-bottom: 2px solid #aaaaaa ;
+	border-bottom: 2px solid #aaaaaa;
+}
 
+.search {
+	margin: 0 auto;
+	width: 30%;
+	margin-bottom: 40px;
+}
+
+.card-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
 }

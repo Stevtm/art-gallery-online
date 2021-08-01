@@ -14,6 +14,8 @@ import { useLazyQuery } from "@apollo/client";
 
 import { QUERY_CHECKOUT } from "../../utils/queries";
 
+import "./style.css";
+
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const TimelineItem = ({ art }) => {
