@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	createTheme,
 	Timeline,
@@ -19,13 +19,25 @@ const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 const TimelineItem = ({ art }) => {
 	const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
-	function submitCheckout(art) {
+	useEffect(() => {
+		if (data) {
+			stripePromise.then((res) => {
+				res.redirectToCheckout({ sessionId: data.checkout.session });
+			});
+		}
+	}, [data]);
+
+	function submitCheckout() {
 		getCheckout({
 			variables: {
-				checkoutProduct: art,
+				checkoutTitle: art.title,
+				checkoutDescription: art.description,
+				checkoutImgData: art.imgData,
+				checkoutPrice: art.price,
 			},
 		});
 	}
+
 	return (
 		<ImageEvent
 			date={art.createdAt}
@@ -63,7 +75,11 @@ const TimelineItem = ({ art }) => {
 					key={art._id}
 				>
 					<UrlButton href={`/profile/${art.user}`}>SEE ARTIST</UrlButton>
-					<UrlButton target="_blank">BUY FOR ${art.price.toFixed(2)}</UrlButton>
+					<div onClick={submitCheckout}>
+						<UrlButton target="_blank">
+							BUY FOR ${art.price.toFixed(2)}
+						</UrlButton>
+					</div>
 				</div>
 			</div>
 		</ImageEvent>

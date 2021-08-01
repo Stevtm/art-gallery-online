@@ -55,7 +55,12 @@ const typeDefs = gql`
 		# comments(username: String!): Comment
 		# likes: [Art]
 		# image(imgName: String): Image
-		checkout(product: ID!): Checkout
+		checkout(
+			title: String!
+			description: String!
+			imgData: String!
+			price: Int
+		): Checkout
 	}
 
 	type Mutation {

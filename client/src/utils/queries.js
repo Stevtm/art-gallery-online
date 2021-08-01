@@ -61,8 +61,18 @@ export const QUERY_ART = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-	query Query($checkoutProduct: ID!) {
-		checkout(product: $checkoutProduct) {
+	query Query(
+		$checkoutTitle: String!
+		$checkoutDescription: String!
+		$checkoutImgData: String!
+		$checkoutPrice: Int
+	) {
+		checkout(
+			title: $checkoutTitle
+			description: $checkoutDescription
+			imgData: $checkoutImgData
+			price: $checkoutPrice
+		) {
 			session
 		}
 	}
