@@ -1,6 +1,8 @@
 const { AuthenticationError } = require("apollo-server-express");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 const admin = require("firebase-admin");
+const axios = require("axios");
+require("dotenv").config();
 const { User, Art, Comment, Image, Img } = require("../models");
 const { signToken } = require("../utils/auth");
 
@@ -102,7 +104,39 @@ const resolvers = {
 
 			return { token, user };
 		},
-		login: async (parent, { email }) => {
+		login: async (parent, { email, password }) => {
+			// check if the user credentials are ok with firebase
+			let loginSuccess = false;
+
+			await axios
+				.post(
+					`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.FIREBASE_API_KEY}`,
+					{
+						email: email,
+						password: password,
+						returnSecureToken: true,
+					},
+					{
+						headers: {
+							"Content-Type": "application/json",
+						},
+					}
+				)
+				.then((loginData) => {
+					loginSuccess = true;
+					// console.log("loginSuccess 1", loginSuccess);
+					console.log("User credentials verified");
+				})
+				.catch((err) => {
+					console.log("User credentials could not be verified", err);
+				});
+
+			// console.log("loginSuccess 2", loginSuccess);
+
+			if (loginSuccess === false) {
+				throw new AuthenticationError("Incorrect credentials.");
+			}
+
 			const user = await User.findOne({ email });
 
 			if (!user) {
